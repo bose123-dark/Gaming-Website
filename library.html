@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Center | Player Library | Dark Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./library.css">
+</head>
+<body class="page-reveal">
+
+    <!-- TOP HEADER -->
+    <div class="first-border">
+        <div id="header-content1">
+            <i class="fa fa-anchor head-icon"></i>
+            <p1>Dark <span class="game-color">Game</span></p1>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu" onclick="document.getElementById('header-content2').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div id="header-content2">
+            <ul class="head2">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="./store.html">Store</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="library.html" style="color: var(--primary-color);">Library</a></li>
+            </ul>
+        </div>
+
+        <div id="header-content3">
+            <a href="login.html" style="text-decoration: none;"><button class="head-btn1">Login / Register</button></a>
+        </div>
+    </div>
+
+    <!-- LIBRARY DASHBOARD -->
+    <div class="library-dashboard">
+        
+        <div class="dashboard-header">
+            <div class="player-profile">
+                <div class="avatar-frame">
+                    <img src="images/sung-jinwoo.jpg" class="avatar-img" alt="Player">
+                    <div class="level-badge" data-value="42" data-prefix="LVL ">LVL 0</div>
+                </div>
+                <div>
+                    <h1 style="font-size: 42px; color: #fff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 3px;">SHADOW <span style="color: orange;">HUNTER</span></h1>
+                    <p style="color: var(--primary-color); font-size: 14px; font-weight: bold; letter-spacing: 3px; display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 8px; height: 8px; background: orange; border-radius: 50%;"></span>
+                        ELITE RANKED PLAYER
+                    </p>
+                </div>
+            </div>
+
+            <div class="stat-rings">
+                <div class="ring-item" title="Experience Points">
+                    <svg class="ring-svg">
+                        <circle class="ring-bg" cx="35" cy="35" r="32"></circle>
+                        <circle class="ring-progress" cx="35" cy="35" r="32" data-offset="36"></circle>
+                    </svg>
+                    <div class="ring-val" data-value="82" data-suffix="%">0</div>
+                    <span class="ring-label">EXP</span>
+                </div>
+                <div class="ring-item" title="Games Collection">
+                    <svg class="ring-svg">
+                        <circle class="ring-bg" cx="35" cy="35" r="32"></circle>
+                        <circle class="ring-progress" cx="35" cy="35" r="32" data-offset="120" style="stroke: var(--secondary-color);"></circle>
+                    </svg>
+                    <div class="ring-val" data-value="12" data-suffix="">0</div>
+                    <span class="ring-label">GAMES</span>
+                </div>
+                <div class="ring-item" title="Total Play Time">
+                    <svg class="ring-svg">
+                        <circle class="ring-bg" cx="35" cy="35" r="32"></circle>
+                        <circle class="ring-progress" cx="35" cy="35" r="32" data-offset="80" style="stroke: var(--cyan-color);"></circle>
+                    </svg>
+                    <div class="ring-val" data-value="248" data-suffix="h">0h</div>
+                    <span class="ring-label">TIME</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="library-content-grid">
+            
+            <div class="main-collection">
+                <h3 class="sidebar-title"><i class="fa fa-th-large"></i> System Collection</h3>
+                <div class="collection-grid">
+                    
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap">
+                            <img src="images/cyberpunk.jpg" alt="Game">
+                            <div class="card-overlay">
+                                <button class="play-btn"><i class="fa fa-play" style="margin-right: 8px;"></i> LAUNCH</button>
+                            </div>
+                        </div>
+                        <div class="progress-meta">
+                            <span>STORY PROGRESS</span>
+                            <span class="stat-num" data-value="68" data-suffix="%">75%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="68"></div>
+                        </div>
+                        <div class="achievement-mini-grid">
+                            <div class="ach-soul active" title="Prologue Done"></div>
+                            <div class="ach-soul active" title="Street Legend"></div>
+                            <div class="ach-soul active" title="Netrunner"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                        </div>
+                    </div>
+
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap">
+                            <img src="images/elden-ring.jpg" alt="Game">
+                            <div class="card-overlay">
+                                <button class="play-btn"><i class="fa fa-play" style="margin-right: 8px;"></i> LAUNCH</button>
+                            </div>
+                        </div>
+                        <div class="progress-meta">
+                            <span>PROGRESS</span>
+                            <span class="stat-num" data-value="100" data-suffix="%">100%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="100" style="background: var(--cyan-color);"></div>
+                        </div>
+                        <div class="achievement-mini-grid">
+                            <div class="ach-soul active" title="Elden Lord"></div>
+                            <div class="ach-soul active" title="Demi-God Hunter"></div>
+                            <div class="ach-soul active" title="Great Rune"></div>
+                            <div class="ach-soul active" title="Dragon Heart"></div>
+                            <div class="ach-soul active" title="Platinum"></div>
+                        </div>
+                    </div>
+
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap">
+                            <img src="images/venom.jpg" alt="Game">
+                            <div class="card-overlay">
+                                <button class="play-btn"><i class="fa fa-play" style="margin-right: 8px;"></i> LAUNCH</button>
+                            </div>
+                        </div>
+                        <div class="progress-meta">
+                            <span>PROGRESS</span>
+                            <span class="stat-num" data-value="15" data-suffix="%">20%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="15"></div>
+                        </div>
+                        <div class="achievement-mini-grid">
+                            <div class="ach-soul active" title="Symbiote Start"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                        </div>
+                    </div>
+
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap">
+                            <img src="images/uncharted.jpg" alt="Game">
+                            <div class="card-overlay">
+                                <button class="play-btn"><i class="fa fa-play" style="margin-right: 8px;"></i> LAUNCH</button>
+                            </div>
+                        </div>
+                        <div class="progress-meta">
+                            <span>PROGRESS</span>
+                            <span class="stat-num" data-value="42" data-suffix="%">45%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="42"></div>
+                        </div>
+                        <div class="achievement-mini-grid">
+                            <div class="ach-soul active" title="Jin's Journey"></div>
+                            <div class="ach-soul active" title="Standoff Master"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                            <div class="ach-soul" title="Locked"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="friends-sidebar">
+                <h3 class="sidebar-title"><i class="fa fa-users"></i> Neural Links</h3>
+                <div class="friend-row" data-status="online">
+                    <div class="avatar-wrap">
+                        <img src="images/peakpx.jpg" class="friend-avatar" alt="Friend">
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="friend-info">
+                        <h5>Iron Sniper</h5>
+                        <span class="friend-status" style="color: #00ff7b;">Playing Cyberpunk</span>
+                    </div>
+                </div>
+                <div class="friend-row" data-status="offline">
+                    <div class="avatar-wrap">
+                        <img src="images/groot.jpg" class="friend-avatar" alt="Friend" style="border-color: #555;">
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="friend-info">
+                        <h5>Flora Guard</h5>
+                        <span class="friend-status">Offline (2h ago)</span>
+                    </div>
+                </div>
+                <div class="friend-row" data-status="online">
+                    <div class="avatar-wrap">
+                        <img src="images/pika.jpg" class="friend-avatar" alt="Friend">
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="friend-info">
+                        <h5>Volt Dash</h5>
+                        <span class="friend-status" style="color: #00ff7b;">Playing Elden Ring</span>
+                    </div>
+                </div>
+                
+                <button class="head-btn1 interactive-btn" style="width: 100%; margin-top: 20px; border-radius: 12px; height: 50px;">
+                    <i class="fa fa-search" style="margin-right: 8px;"></i> Search Players
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="gw-footer-section">
+        <div class="gw-footer-container">
+            <div class="gw-footer-col">
+                <div class="gw-brand">
+                    <div class="gw-brand-title">Dark <span>Game</span></div>
+                </div>
+                <p class="gw-brand-desc" id="footer-text">Latest Game Releases & Updates Here and Breaking Gaming News & Release Updates</p>
+                <div class="gw-character-wrapper">
+                    <img src="images/demon.jpg" alt="Character">
+                </div>
+            </div>
+
+            <div class="gw-footer-col gw-panel">
+                <div class="gw-panel-title">Latest Updates</div>
+                <div class="gw-post-list">
+                    <div class="gw-post-item">
+                        <img src="images/gta-6.jpg" class="gw-post-img">
+                        <div class="gw-post-info">
+                            <div class="gw-post-date">Jan 21, 2027</div>
+                            <div class="gw-post-title">GTA VI Map Leaks Surface Online</div>
+                        </div>
+                    </div>
+                    <div class="gw-post-item">
+                        <img src="images/venom.jpg" class="gw-post-img">
+                        <div class="gw-post-info">
+                            <div class="gw-post-date">Oct 20, 2023</div>
+                            <div class="gw-post-title">Spider-Man 2 New DLC Confirmed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth Number Animation
+        function animateValue(obj, start, end, duration, suffix = "", prefix = "") {
+            let startTimestamp = null;
+            const isRing = obj.classList.contains('ring-val');
+            
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Ease Out Expo
+                const easeProgress = 1 - Math.pow(2, -10 * progress);
+                const current = Math.floor(easeProgress * (end - start) + start);
+                
+                // Add a "alive" pulsing effect during animation
+                if (isRing) {
+                    obj.style.transform = `translate(-50%, -50%) scale(${1 + (1 - progress) * 0.15})`;
+                } else {
+                    obj.style.transform = `scale(${1 + (1 - progress) * 0.15})`;
+                }
+
+                obj.innerHTML = prefix + current + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    // Reset transform on finish
+                    if (isRing) {
+                        obj.style.transform = `translate(-50%, -50%) scale(1)`;
+                    } else {
+                        obj.style.transform = `scale(1)`;
+                    }
+                    obj.innerHTML = prefix + end + suffix;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Stats Number Animation
+        function animateValue(obj, start, end, duration, suffix = "") {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animation Trigger Logic
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate Rings
+                    const rings = entry.target.querySelectorAll('.ring-progress');
+                    rings.forEach(ring => {
+                        const offset = ring.getAttribute('data-offset');
+                        ring.style.strokeDashoffset = offset;
+                    });
+
+                    // Animate Numbers
+                    const values = entry.target.querySelectorAll('.ring-val');
+                    values.forEach(val => {
+                        const target = parseInt(val.getAttribute('data-value'));
+                        const suffix = val.getAttribute('data-suffix');
+                        animateValue(val, 0, target, 2000, suffix);
+                    });
+
+                    // Animate Progress Bars in Cards
+                    const bars = document.querySelectorAll('.progress-bar');
+                    bars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = width + '%';
+                    });
+
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const dashboardHeader = document.querySelector('.dashboard-header');
+        if (dashboardHeader) {
+            statsObserver.observe(dashboardHeader);
+        }
+        // Observe Sections
+        document.querySelectorAll('.dashboard-header, .horizontal-card').forEach(s => statsObserver.observe(s));
+
+        // Footer Typewriter (Restored Original)
+        document.addEventListener("DOMContentLoaded", () => {
+            const footerDesc = document.getElementById('footer-text');
+            if (footerDesc) {
+                const textToType = footerDesc.innerText;
+                footerDesc.innerHTML = '';
+                let charIndex = 0;
+                function type() {
+                    if (charIndex <= textToType.length) {
+                        footerDesc.innerHTML = textToType.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
+                        charIndex++;
+                        setTimeout(type, 35);
+                    } else {
+                        footerDesc.innerHTML = textToType; 
+                    }
+                }
+                const footObs = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) { type(); footObs.disconnect(); }
+                }, { threshold: 0.5 });
+                footObs.observe(document.querySelector('.gw-footer-section'));
+            }
+        });
+    </script>
+</body>
+</html>

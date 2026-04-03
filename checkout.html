@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Dark Game</title>
+    <meta name="description" content="Complete your purchase securely at Dark Game - your premium gaming marketplace.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./checkout.css">
+    <style>
+        /* Confirm state: green pulse, overrides the gold gradient */
+        .buy-now-btn.confirming {
+            background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+            animation: confirmPulse 0.6s ease both, confirmBreath 1.2s ease-in-out 0.6s infinite;
+        }
+        @keyframes confirmPulse {
+            0%   { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(0,200,83,0.7); }
+            50%  { transform: scale(1.03); box-shadow: 0 0 0 14px rgba(0,200,83,0); }
+            100% { transform: scale(1);   box-shadow: 0 0 20px rgba(0,200,83,0.45); }
+        }
+        @keyframes confirmBreath {
+            0%, 100% { box-shadow: 0 0 18px rgba(0,200,83,0.4); }
+            50%       { box-shadow: 0 0 34px rgba(0,200,83,0.75); }
+        }
+        .buy-now-btn.confirming:hover {
+            background: linear-gradient(135deg, #00b548 0%, #00d068 100%);
+        }
+
+        /* Tick pop-in for progress bar steps */
+        .ps-tick-anim {
+            display: inline-block;
+            animation: tickPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes tickPop {
+            0%   { transform: scale(0) rotate(-90deg); opacity: 0; }
+            60%  { transform: scale(1.3) rotate(8deg);  opacity: 1; }
+            100% { transform: scale(1)  rotate(0deg);   opacity: 1; }
+        }
+
+        /* Filled line transition */
+        .progress-line {
+            transition: background-color 0.4s ease;
+        }
+    </style>
+</head>
+<body class="page-reveal">
+
+    <!-- TOP HEADER -->
+    <div class="first-border">
+        <div id="header-content1">
+            <i class="fa fa-anchor head-icon"></i>
+            <p1>Dark <span class="game-color">Game</span></p1>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div id="header-content2">
+            <ul class="head2">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="./store.html" style="color: #ffb300;">Store</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="library.html">Library</a></li>
+            </ul>
+        </div>
+
+        <div id="header-content3">
+            <a href="login.html" style="text-decoration:none;">
+                <button class="head-btn1" type="button">Login / Register</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- PAGE HERO BANNER -->
+    <div class="checkout-hero">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="checkout-hero-content">
+            <span class="hero-badge"><i class="fa fa-lock"></i> Secure Checkout</span>
+            <h1>Complete Your <span class="highlight">Order</span></h1>
+            <p>You're one step away from entering the game.</p>
+        </div>
+        <!-- Progress Bar -->
+        <div class="progress-bar-wrapper">
+            <div class="progress-step done" id="step1">
+                <div class="ps-circle"><i class="fa fa-check"></i></div>
+                <span>Cart</span>
+            </div>
+            <div class="progress-line filled" id="line1"></div>
+            <div class="progress-step active" id="step2">
+                <div class="ps-circle" id="circle2">2</div>
+                <span>Checkout</span>
+            </div>
+            <div class="progress-line" id="line2"></div>
+            <div class="progress-step" id="step3">
+                <div class="ps-circle" id="circle3">3</div>
+                <span>Confirm</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CHECKOUT GRID -->
+    <div class="checkout-main">
+
+        <!-- LEFT COLUMN: FORMS -->
+        <div class="checkout-forms">
+
+            <!-- Account Section -->
+            <div class="form-card" id="section-account">
+                <div class="form-card-header">
+                    <div class="form-icon-wrap"><i class="fa fa-user"></i></div>
+                    <div>
+                        <h2 class="section-title">Account Details</h2>
+                        <p class="section-sub">Enter your gamer profile information</p>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <div class="input-wrap">
+                            <i class="fa fa-user-o"></i>
+                            <input type="text" id="firstName" placeholder="Shadow">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <div class="input-wrap">
+                            <i class="fa fa-user-o"></i>
+                            <input type="text" id="lastName" placeholder="Hunter">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrap">
+                            <i class="fa fa-envelope-o"></i>
+                            <input type="email" id="email" placeholder="player@darkgame.com">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="username">Gamer Tag</label>
+                        <div class="input-wrap">
+                            <i class="fa fa-gamepad"></i>
+                            <input type="text" id="username" placeholder="ShadowKnight_X">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Selection -->
+            <div class="form-card" id="section-platform">
+                <div class="form-card-header">
+                    <div class="form-icon-wrap"><i class="fa fa-desktop"></i></div>
+                    <div>
+                        <h2 class="section-title">Select Platform</h2>
+                        <p class="section-sub">Choose where you want to play</p>
+                    </div>
+                </div>
+                <div class="platform-grid">
+                    <label class="platform-card selected" id="platform-pc">
+                        <input type="radio" name="platform" value="PC" checked>
+                        <i class="fa fa-windows"></i>
+                        <span>PC</span>
+                        <div class="platform-indicator"></div>
+                    </label>
+                    <label class="platform-card" id="platform-ps5">
+                        <input type="radio" name="platform" value="PS5">
+                        <i class="fa fa-playstation"></i>
+                        <span>PlayStation 5</span>
+                        <div class="platform-indicator"></div>
+                    </label>
+                    <label class="platform-card" id="platform-xbox">
+                        <input type="radio" name="platform" value="Xbox">
+                        <i class="fa fa-gamepad"></i>
+                        <span>Xbox Series X</span>
+                        <div class="platform-indicator"></div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Edition Selection -->
+            <div class="form-card" id="section-edition">
+                <div class="form-card-header">
+                    <div class="form-icon-wrap"><i class="fa fa-star"></i></div>
+                    <div>
+                        <h2 class="section-title">Choose Edition</h2>
+                        <p class="section-sub">Pick your level of immersion</p>
+                    </div>
+                </div>
+                <div class="edition-list">
+                    <label class="edition-card" data-price="39.99">
+                        <input type="radio" name="edition" value="standard">
+                        <div class="edition-info">
+                            <div class="edition-name">Standard Edition</div>
+                            <div class="edition-desc">Base game + Day-1 patch</div>
+                            <ul class="edition-features">
+                                <li><i class="fa fa-check-circle"></i> Full base game access</li>
+                                <li><i class="fa fa-check-circle"></i> Day-1 patch</li>
+                            </ul>
+                        </div>
+                        <div class="edition-price">$39.99</div>
+                    </label>
+                    <label class="edition-card selected" data-price="59.99">
+                        <input type="radio" name="edition" value="deluxe" checked>
+                        <div class="edition-badge">Best Value</div>
+                        <div class="edition-info">
+                            <div class="edition-name">Deluxe Edition</div>
+                            <div class="edition-desc">Base game + Season Pass + Bonus DLC</div>
+                            <ul class="edition-features">
+                                <li><i class="fa fa-check-circle"></i> Full base game access</li>
+                                <li><i class="fa fa-check-circle"></i> Season Pass (3 expansions)</li>
+                                <li><i class="fa fa-check-circle"></i> Exclusive Dark Armor skin</li>
+                                <li><i class="fa fa-check-circle"></i> 3-day early access</li>
+                            </ul>
+                        </div>
+                        <div class="edition-price">$59.99</div>
+                    </label>
+                    <label class="edition-card" data-price="89.99">
+                        <input type="radio" name="edition" value="ultimate">
+                        <div class="edition-info">
+                            <div class="edition-name">Ultimate Edition</div>
+                            <div class="edition-desc">Everything + Collector's Digital Bundle</div>
+                            <ul class="edition-features">
+                                <li><i class="fa fa-check-circle"></i> Everything in Deluxe</li>
+                                <li><i class="fa fa-check-circle"></i> Artbook & Soundtrack</li>
+                                <li><i class="fa fa-check-circle"></i> 2x XP boost (30 days)</li>
+                                <li><i class="fa fa-check-circle"></i> 7-day early access</li>
+                                <li><i class="fa fa-check-circle"></i> Exclusive legacy badge</li>
+                            </ul>
+                        </div>
+                        <div class="edition-price">$89.99</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="form-card" id="section-payment">
+                <div class="form-card-header">
+                    <div class="form-icon-wrap"><i class="fa fa-credit-card"></i></div>
+                    <div>
+                        <h2 class="section-title">Payment Details</h2>
+                        <p class="section-sub">Your information is secured with 256-bit SSL</p>
+                    </div>
+                </div>
+
+                <!-- Payment Method Tabs -->
+                <div class="pay-tabs">
+                    <button class="pay-tab active" data-tab="card" id="tab-card">
+                        <i class="fa fa-credit-card"></i> Card
+                    </button>
+                    <button class="pay-tab" data-tab="paypal" id="tab-paypal">
+                        <i class="fa fa-paypal"></i> PayPal
+                    </button>
+                    <button class="pay-tab" data-tab="crypto" id="tab-crypto">
+                        <i class="fa fa-bitcoin"></i> Crypto
+                    </button>
+                </div>
+
+                <!-- Card Tab Content -->
+                <div class="pay-content active" id="content-card">
+                    <div class="card-visual" id="cardVisual">
+                        <div class="card-chip"></div>
+                        <div class="card-number-display" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                        <div class="card-bottom">
+                            <div>
+                                <div class="card-label">Card Holder</div>
+                                <div class="card-holder-display" id="cardHolderDisplay">YOUR NAME</div>
+                            </div>
+                            <div>
+                                <div class="card-label">Expires</div>
+                                <div class="card-expiry-display" id="cardExpiryDisplay">MM/YY</div>
+                            </div>
+                            <div class="card-logo">DARK<br>GAME</div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="cardName">Name on Card</label>
+                            <div class="input-wrap">
+                                <i class="fa fa-user-o"></i>
+                                <input type="text" id="cardName" placeholder="Shadow Hunter" maxlength="26">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="cardNumber">Card Number</label>
+                            <div class="input-wrap">
+                                <i class="fa fa-credit-card-alt"></i>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <div class="input-wrap">
+                                <i class="fa fa-calendar"></i>
+                                <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV / CVC</label>
+                            <div class="input-wrap">
+                                <i class="fa fa-lock"></i>
+                                <input type="text" id="cvv" placeholder="•••" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PayPal Tab Content -->
+                <div class="pay-content" id="content-paypal">
+                    <div class="alt-pay-box">
+                        <div class="alt-pay-icon paypal-icon"><i class="fa fa-paypal"></i></div>
+                        <p class="alt-pay-text">You'll be redirected to PayPal to complete your secure payment.</p>
+                        <button class="alt-pay-btn" type="button">
+                            <i class="fa fa-paypal"></i> Continue with PayPal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Crypto Tab Content -->
+                <div class="pay-content" id="content-crypto">
+                    <div class="alt-pay-box">
+                        <div class="alt-pay-icon crypto-icon"><i class="fa fa-bitcoin"></i></div>
+                        <p class="alt-pay-text">Pay with Bitcoin, Ethereum, or USDT. Scan the QR code after placing your order.</p>
+                        <div class="crypto-options">
+                            <button class="crypto-btn" type="button"><i class="fa fa-bitcoin"></i> Bitcoin</button>
+                            <button class="crypto-btn" type="button">ETH</button>
+                            <button class="crypto-btn" type="button">USDT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: ORDER SUMMARY -->
+        <div class="order-summary">
+
+            <!-- Game Preview -->
+            <div class="summary-card game-preview-card">
+                <div class="game-preview-img" id="gamePreviewImg">
+                    <div class="game-badge-overlay" id="gameBadge">Best Value</div>
+                </div>
+                <div class="game-preview-info">
+                    <div class="game-genre-tag" id="gameGenre">Action / RPG</div>
+                    <div class="game-title-display" id="gameTitle">Marvel's Spider-Man 2</div>
+                    <div class="game-rating">
+                        <span class="star-rating">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+                        </span>
+                        <span class="rating-count">9.5 / 10</span>
+                    </div>
+                    <div class="game-meta">
+                        <span><i class="fa fa-calendar"></i> Oct 2023</span>
+                        <span><i class="fa fa-users"></i> 2.4M Players</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Breakdown -->
+            <div class="summary-card">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="order-lines">
+                    <div class="order-line">
+                        <span class="order-line-label">Marvel's Spider-Man 2<br><small>Deluxe Edition · PC</small></span>
+                        <span class="order-line-val" id="basePrice">$59.99</span>
+                    </div>
+                    <div class="order-line">
+                        <span class="order-line-label">Dark Game Member Discount</span>
+                        <span class="order-line-val discount" id="discountAmt">-$5.00</span>
+                    </div>
+                    <div class="order-line">
+                        <span class="order-line-label">Tax (8%)</span>
+                        <span class="order-line-val" id="taxAmt">$4.40</span>
+                    </div>
+                </div>
+                <div class="order-divider"></div>
+                <div class="order-total-row">
+                    <span>Total</span>
+                    <span class="total-price" id="totalPrice">$59.39</span>
+                </div>
+
+                <!-- Promo Code -->
+                <div class="promo-row">
+                    <div class="input-wrap" style="flex:1;">
+                        <i class="fa fa-tag"></i>
+                        <input type="text" id="promoCode" placeholder="Promo code (e.g. DARK20)">
+                    </div>
+                    <button class="promo-btn" id="applyPromo" type="button">Apply</button>
+                </div>
+                <div class="promo-msg" id="promoMsg"></div>
+            </div>
+
+            <!-- Security Badges -->
+            <div class="summary-card security-card">
+                <div class="security-item">
+                    <i class="fa fa-lock"></i>
+                    <span>256-bit SSL Encryption</span>
+                </div>
+                <div class="security-item">
+                    <i class="fa fa-shield"></i>
+                    <span>Fraud Protection</span>
+                </div>
+                <div class="security-item">
+                    <i class="fa fa-refresh"></i>
+                    <span>30-Day Refund Policy</span>
+                </div>
+                <div class="security-item">
+                    <i class="fa fa-bolt"></i>
+                    <span>Instant Digital Delivery</span>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <button class="buy-now-btn" id="buyNowBtn" type="button">
+                <span class="btn-icon"><i class="fa fa-lock"></i></span>
+                <span class="btn-text">Place Order Now</span>
+                <span class="btn-price" id="btnPrice">$59.39</span>
+            </button>
+
+            <p class="checkout-disclaimer">
+                By placing your order you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                Your game key will be delivered instantly to your email.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <div class="modal-particles" id="modalParticles"></div>
+            <div class="modal-icon">
+                <i class="fa fa-check"></i>
+                <div class="modal-ring"></div>
+            </div>
+            <h2 class="modal-title">Order <span>Confirmed!</span></h2>
+            <p class="modal-sub">Your game key has been sent to your email. Welcome to the Dark universe, Shadow Hunter.</p>
+            <div class="modal-key-box">
+                <span>Game Key:</span>
+                <code id="generatedKey">DG-XXXX-XXXX-XXXX</code>
+                <button class="copy-btn" id="copyKeyBtn" type="button"><i class="fa fa-copy"></i></button>
+            </div>
+            <div class="modal-actions">
+                <a href="library.html"><button class="modal-btn primary" type="button"><i class="fa fa-book"></i> Go to Library</button></a>
+                <a href="store.html"><button class="modal-btn secondary" type="button"><i class="fa fa-shopping-bag"></i> Back to Store</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="gw-footer-section">
+        <div class="gw-footer-container">
+            <div class="gw-footer-col">
+                <div class="gw-brand">
+                    <div class="gw-brand-icon">
+                        <div class="gw-brand-bar"></div>
+                        <div class="gw-brand-bar"></div>
+                        <div class="gw-brand-bar"></div>
+                    </div>
+                    <div class="gw-brand-title">Dark <span>Game</span></div>
+                </div>
+                <p class="gw-brand-desc" id="footerDesc">Latest Game Releases &amp; Updates Here and Breaking Gaming News &amp; Release Updates</p>
+            </div>
+            <div class="gw-footer-col gw-panel">
+                <div class="gw-panel-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="store.html"><i class="fa fa-chevron-right"></i> Game Store</a></li>
+                    <li><a href="library.html"><i class="fa fa-chevron-right"></i> My Library</a></li>
+                    <li><a href="blog.html"><i class="fa fa-chevron-right"></i> Gaming Blog</a></li>
+                    <li><a href="contact.html"><i class="fa fa-chevron-right"></i> Support</a></li>
+                </ul>
+            </div>
+            <div class="gw-footer-col gw-panel">
+                <div class="gw-panel-title">Need Help?</div>
+                <div class="help-items">
+                    <div class="help-item"><i class="fa fa-envelope"></i><span>support@darkgame.com</span></div>
+                    <div class="help-item"><i class="fa fa-clock-o"></i><span>24/7 Live Support</span></div>
+                    <div class="help-item"><i class="fa fa-question-circle"></i><span>FAQ &amp; Help Center</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // HAMBURGER MENU
+        // =============================================
+        const hamburger = document.getElementById('hamburger');
+        const navMenu   = document.getElementById('header-content2');
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+
+        // =============================================
+        // HERO PARTICLES
+        // =============================================
+        function createParticles(containerId, count) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${Math.random() * 4 + 1}px;
+                    height: ${Math.random() * 4 + 1}px;
+                    animation-delay: ${Math.random() * 4}s;
+                    animation-duration: ${Math.random() * 4 + 3}s;
+                `;
+                container.appendChild(p);
+            }
+        }
+        createParticles('heroParticles', 40);
+
+        // =============================================
+        // PLATFORM CARD SELECTION
+        // =============================================
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.platform-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+            });
+        });
+
+        // =============================================
+        // URL PARAMS → POPULATE GAME INFO
+        // =============================================
+        (function loadFromURL() {
+            const params  = new URLSearchParams(window.location.search);
+            const game    = params.get('game')  || "Marvel's Spider-Man 2";
+            const genre   = params.get('genre') || 'Action / Adventure';
+            const price   = parseFloat(params.get('price')) || 59.99;
+
+            // ── Game → Image Map ──
+            // Keys are lowercase, spaces removed for fuzzy matching
+            const IMAGE_MAP = {
+                'spider-man2'       : 'images/spiderman2.jpg',
+                'spiderman2'        : 'images/spiderman2.jpg',
+                'marvels spider-man2':'images/spiderman2.jpg',
+                'cyberpunk2077'     : 'images/cyberpunk.jpg',
+                'eldensring'        : 'images/Elden-Ring.jpg',
+                'eldenring'         : 'images/Elden-Ring.jpg',
+                'residentevil9'     : 'images/resident-evil-9.jpeg',
+                're9'               : 'images/resident-evil-9.jpeg',
+                'ghostoftsushima'   : 'images/ghost-of-tsushima.jpg',
+                'deadbydaylight'    : 'images/dead-by-daylight.jpg',
+                'dbd'               : 'images/dead-by-daylight.jpg',
+                'gtav'              : 'images/gta5.jpg',
+                'grandtheftautov'   : 'images/gta5.jpg',
+                'godofwar4'         : 'images/god-of-war-4.jpg',
+                'godofwar'          : 'images/God-of-War.jpg',
+                'godof4'            : 'images/god-of-war-4.jpg',
+                'uncharted4'        : 'images/uncharted.jpg',
+                'rdr2'              : 'images/rdr2.jpg',
+                'reddeadredemption2': 'images/rdr2.jpg',
+                'ittakestwo'        : 'images/it-takes-two.jpg',
+                'lastofus2'         : 'images/lostofus2.jpg',
+                'thelastofuspartii' : 'images/lostofus2.jpg',
+                'batman'            : 'images/batman.jpg',
+                'valorant'          : 'images/valorant.jpg',
+                'bgmi'              : 'images/bgmi.jpg',
+                'infamous'          : 'images/infamous-second-son.jpg',
+                'infamoussecondson4': 'images/infamous-second-son.jpg',
+            };
+
+            // Normalize: lowercase, remove spaces & special chars for lookup
+            const key = game.toLowerCase().replace(/[\s''.]/g, '');
+            const imgPath = IMAGE_MAP[key] || null;
+
+            // Set game preview card background image
+            const previewEl = document.getElementById('gamePreviewImg');
+            if (previewEl) {
+                if (imgPath) {
+                    previewEl.style.backgroundImage =
+                        `linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.82) 100%), url(${imgPath})`;
+                    previewEl.style.backgroundSize     = 'cover';
+                    previewEl.style.backgroundPosition = 'center top';
+                } else {
+                    // Fallback: stylish dark gradient with game-colored tint
+                    previewEl.style.backgroundImage =
+                        'linear-gradient(135deg, #1a0a2e 0%, #0f0f1a 50%, #1a0a00 100%)';
+                }
+            }
+
+            // Update game preview panel text
+            document.getElementById('gameTitle').textContent  = game;
+            document.getElementById('gameGenre').textContent  = genre;
+
+            // Update order-summary first line label
+            const orderLabel = document.querySelector('.order-line-label');
+            if (orderLabel) {
+                orderLabel.innerHTML = `${game}<br><small id="editionPlatformLabel">Deluxe Edition · PC</small>`;
+            }
+
+            // Map store price → closest edition tier & update data-price on Standard
+            const std  = parseFloat((price * 0.67).toFixed(2));
+            const ult  = parseFloat((price * 1.50).toFixed(2));
+            const cards = document.querySelectorAll('.edition-card');
+            cards[0].dataset.price = std;
+            cards[0].querySelector('.edition-price').textContent = `$${std.toFixed(2)}`;
+            cards[1].dataset.price = price;
+            cards[1].querySelector('.edition-price').textContent = `$${price.toFixed(2)}`;
+            cards[2].dataset.price = ult;
+            cards[2].querySelector('.edition-price').textContent = `$${ult.toFixed(2)}`;
+
+            // Title tag
+            document.title = `Buy ${game} | Dark Game`;
+
+            // Update badge
+            document.getElementById('gameBadge').textContent =
+                price >= 60 ? 'New Release' : price >= 40 ? 'Best Value' : 'Great Deal';
+        })();
+
+        // Sync edition label with platform & edition selection
+        function syncOrderLabel() {
+            const edition  = document.querySelector('.edition-card.selected .edition-name');
+            const platform = document.querySelector('.platform-card.selected span');
+            const lbl = document.getElementById('editionPlatformLabel');
+            if (lbl && edition && platform) {
+                lbl.textContent = `${edition.textContent} · ${platform.textContent}`;
+            }
+        }
+
+        // =============================================
+        // EDITION SELECTION + PRICE CALC
+        // =============================================
+        const DISCOUNT = 5.00;
+        const TAX_RATE = 0.08;
+
+        function recalcTotal() {
+            const selected = document.querySelector('.edition-card.selected');
+            const basePrice = parseFloat(selected ? selected.dataset.price : 59.99);
+            const safeBase  = Math.max(basePrice - DISCOUNT, 0);
+            const tax   = parseFloat((safeBase * TAX_RATE).toFixed(2));
+            const total = parseFloat((safeBase + tax).toFixed(2));
+
+            document.getElementById('basePrice').textContent   = `$${basePrice.toFixed(2)}`;
+            document.getElementById('discountAmt').textContent = `-$${DISCOUNT.toFixed(2)}`;
+            document.getElementById('taxAmt').textContent      = `$${tax.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent  = `$${total.toFixed(2)}`;
+            document.getElementById('btnPrice').textContent    = `$${total.toFixed(2)}`;
+            syncOrderLabel();
+        }
+
+        document.querySelectorAll('.edition-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.edition-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                recalcTotal();
+            });
+        });
+
+        // Also update label on platform change
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', syncOrderLabel);
+        });
+
+        recalcTotal();
+
+        // =============================================
+        // PAYMENT TABS
+        // =============================================
+        document.querySelectorAll('.pay-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.pay-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`content-${tab.dataset.tab}`).classList.add('active');
+            });
+        });
+
+        // =============================================
+        // LIVE CARD PREVIEW
+        // =============================================
+        const cardNameInput   = document.getElementById('cardName');
+        const cardNumberInput = document.getElementById('cardNumber');
+        const expiryInput     = document.getElementById('expiry');
+        const cardVisual      = document.getElementById('cardVisual');
+
+        cardNameInput.addEventListener('input', () => {
+            const val = cardNameInput.value.trim().toUpperCase() || 'YOUR NAME';
+            document.getElementById('cardHolderDisplay').textContent = val;
+        });
+
+        cardNumberInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '').substring(0, 16);
+            e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+            const display = v.padEnd(16, '•').replace(/(.{4})/g, '$1 ').trim();
+            document.getElementById('cardNumberDisplay').textContent = display;
+            // Detect card type for glow
+            if (v.startsWith('4')) cardVisual.style.setProperty('--card-glow', '#1a1aff');
+            else if (v.startsWith('5')) cardVisual.style.setProperty('--card-glow', '#cc0000');
+            else cardVisual.style.setProperty('--card-glow', 'var(--primary-color)');
+        });
+
+        expiryInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '').substring(0, 4);
+            if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+            e.target.value = v;
+            document.getElementById('cardExpiryDisplay').textContent = v || 'MM/YY';
+        });
+
+        // =============================================
+        // PROMO CODE
+        // =============================================
+        const PROMO_CODES = { 'DARK20': 20, 'GAME10': 10, 'SHADOW': 15 };
+        let promoApplied = false;
+
+        document.getElementById('applyPromo').addEventListener('click', () => {
+            const code = document.getElementById('promoCode').value.trim().toUpperCase();
+            const msg  = document.getElementById('promoMsg');
+            if (promoApplied) { msg.textContent = '⚠  A promo code is already applied.'; msg.className = 'promo-msg warn'; return; }
+            if (PROMO_CODES[code]) {
+                msg.textContent = `✓  Code applied! ${PROMO_CODES[code]}% extra off.`;
+                msg.className = 'promo-msg success';
+                promoApplied = true;
+                // Reflect in discount
+                const selected = document.querySelector('.edition-card.selected');
+                const base = parseFloat(selected.dataset.price);
+                const promoDiscount = parseFloat((base * PROMO_CODES[code] / 100).toFixed(2));
+                const newTotal = parseFloat((base - DISCOUNT - promoDiscount + (base - DISCOUNT - promoDiscount) * TAX_RATE).toFixed(2));
+                document.getElementById('discountAmt').textContent = `-$${(DISCOUNT + promoDiscount).toFixed(2)}`;
+                document.getElementById('taxAmt').textContent = `$${((base - DISCOUNT - promoDiscount) * TAX_RATE).toFixed(2)}`;
+                document.getElementById('totalPrice').textContent = `$${newTotal.toFixed(2)}`;
+                document.getElementById('btnPrice').textContent = `$${newTotal.toFixed(2)}`;
+            } else {
+                msg.textContent = '✗  Invalid promo code. Try DARK20.';
+                msg.className = 'promo-msg error';
+            }
+        });
+
+        // =============================================
+        // BUY NOW BUTTON  (2-step confirm flow)
+        // =============================================
+        let confirmStep = false;
+        let confirmResetTimer = null;
+
+        const buyBtn  = document.getElementById('buyNowBtn');
+        const btnText = buyBtn.querySelector('.btn-text');
+        const btnIcon = buyBtn.querySelector('.btn-icon i');
+
+        // Progress bar helpers
+        const step2   = document.getElementById('step2');
+        const step3   = document.getElementById('step3');
+        const circle2 = document.getElementById('circle2');
+        const circle3 = document.getElementById('circle3');
+        const line2   = document.getElementById('line2');
+
+        function markStepDone(stepEl, circleEl) {
+            stepEl.classList.remove('active');
+            stepEl.classList.add('done');
+            // animated tick pop-in
+            circleEl.innerHTML = '<i class="fa fa-check ps-tick-anim"></i>';
+        }
+
+        function setStepActive(stepEl, circleEl, num) {
+            stepEl.classList.add('active');
+            circleEl.textContent = num;
+        }
+
+        function resetProgress() {
+            // Restore step 2 to active
+            step2.classList.remove('done');
+            step2.classList.add('active');
+            circle2.innerHTML = '2';
+            // Restore step 3 to inactive
+            step3.classList.remove('done', 'active');
+            circle3.innerHTML = '3';
+            // Remove filled from line2
+            line2.classList.remove('filled');
+        }
+
+        function resetBtn() {
+            confirmStep = false;
+            clearTimeout(confirmResetTimer);
+            buyBtn.classList.remove('confirming', 'loading');
+            btnText.textContent = 'Place Order Now';
+            btnIcon.className = 'fa fa-lock';
+            resetProgress();
+        }
+
+        buyBtn.addEventListener('click', () => {
+            if (buyBtn.classList.contains('loading')) return;
+
+            if (!confirmStep) {
+                // ── STEP 1: ask for confirmation ──
+                confirmStep = true;
+                buyBtn.classList.add('confirming');
+                btnText.textContent = 'Confirm Order?';
+                btnIcon.className = 'fa fa-check';
+
+                // Progress: Checkout → done, Confirm → active
+                markStepDone(step2, circle2);
+                setStepActive(step3, circle3, '3');
+                step3.classList.add('active');
+                line2.classList.add('filled');
+
+                // Auto-reset if user ignores for 4 seconds
+                confirmResetTimer = setTimeout(resetBtn, 4000);
+            } else {
+                // ── STEP 2: process ──
+                clearTimeout(confirmResetTimer);
+                buyBtn.classList.remove('confirming');
+                buyBtn.classList.add('loading');
+                btnText.textContent = 'Processing...';
+                btnIcon.className = 'fa fa-spinner fa-spin';
+
+                setTimeout(() => {
+                    // Progress: Confirm → done with tick
+                    markStepDone(step3, circle3);
+
+                    const key = 'DG-' + Math.random().toString(36).substring(2,6).toUpperCase() + '-' +
+                                         Math.random().toString(36).substring(2,6).toUpperCase() + '-' +
+                                         Math.random().toString(36).substring(2,6).toUpperCase();
+                    document.getElementById('generatedKey').textContent = key;
+
+                    // small delay so user sees the tick before modal
+                    setTimeout(() => {
+                        buyBtn.classList.remove('loading');
+                        btnText.textContent = 'Place Order Now';
+                        btnIcon.className = 'fa fa-lock';
+                        confirmStep = false;
+                        openModal();
+                    }, 400);
+                }, 2500);
+            }
+        });
+
+        // Clicking anywhere else cancels confirm step
+        document.addEventListener('click', (e) => {
+            if (confirmStep && !buyBtn.contains(e.target)) resetBtn();
+        });
+
+        // =============================================
+        // SUCCESS MODAL
+        // =============================================
+        function openModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('active');
+            createParticles('modalParticles', 30);
+        }
+
+        document.getElementById('successModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('successModal')) {
+                document.getElementById('successModal').classList.remove('active');
+            }
+        });
+
+        document.getElementById('copyKeyBtn').addEventListener('click', () => {
+            const key = document.getElementById('generatedKey').textContent;
+            navigator.clipboard.writeText(key).then(() => {
+                const btn = document.getElementById('copyKeyBtn');
+                btn.innerHTML = '<i class="fa fa-check"></i>';
+                setTimeout(() => btn.innerHTML = '<i class="fa fa-copy"></i>', 2000);
+            });
+        });
+
+        // =============================================
+        // FOOTER TYPEWRITER
+        // =============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerDesc = document.getElementById('footerDesc');
+            const footerSection = document.querySelector('.gw-footer-section');
+            if (!footerDesc || !footerSection) return;
+            const text = footerDesc.innerText;
+            footerDesc.innerHTML = '';
+            let hasTyped = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasTyped) {
+                    hasTyped = true;
+                    let i = 0;
+                    function type() {
+                        if (i <= text.length) {
+                            footerDesc.innerHTML = text.substring(0, i) + '<span class="typewriter-cursor">|</span>';
+                            i++;
+                            setTimeout(type, 35);
+                        } else {
+                            footerDesc.innerHTML = text;
+                        }
+                    }
+                    setTimeout(type, 400);
+                }
+            }, { threshold: 0.2 });
+            observer.observe(footerSection);
+        });
+
+        // =============================================
+        // SCROLL REVEAL FOR FORM CARDS
+        // =============================================
+        const revealCards = document.querySelectorAll('.form-card, .summary-card');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealCards.forEach(card => revealObserver.observe(card));
+    </script>
+
+</body>
+</html>
