@@ -13,6 +13,7 @@
             position: relative;
             width: 100%;
             height: 60vh;
+            min-height: 450px; /* Fix for mobile address bar resize issues */
             background-size: cover;
             background-position: center;
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.95) 100%), url('images/Elden-Ring.jpg');
@@ -23,28 +24,22 @@
 
         .article-header-content {
             max-width: 900px;
-            /* Applying the new cinematic animation style */
-            animation: cinematicReveal 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-            opacity: 0; /* Starts hidden until animation triggers */
+            width: 100%; /* Prevent overflow */
+            /* Android Safe Animation */
+            animation: cinematicReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            opacity: 0;
         }
 
-        /* NEW ALTERNATIVE ANIMATION STYLE */
+        /* SAFE CINEMATIC ANIMATION - Removed heavy blur filters that crash Android */
         @keyframes cinematicReveal {
             0% { 
                 opacity: 0; 
-                transform: scale(0.9) translateY(60px);
-                filter: blur(15px);
+                transform: scale(0.92) translateY(50px);
                 letter-spacing: -2px;
-            }
-            50% { 
-                opacity: 0.7; 
-                filter: blur(4px);
-                letter-spacing: 2px;
             }
             100% { 
                 opacity: 1; 
                 transform: scale(1) translateY(0);
-                filter: blur(0);
                 letter-spacing: normal;
             }
         }
@@ -56,6 +51,7 @@
             margin-bottom: 20px;
             font-size: 14px;
             font-weight: bold;
+            flex-wrap: wrap; /* Fix horizontal overflow on mobile */
         }
 
         .tag-category {
@@ -70,20 +66,22 @@
         }
 
         .article-title {
-            font-size: clamp(36px, 5vw, 54px);
+            font-size: clamp(32px, 6vw, 54px);
             font-weight: 800;
             line-height: 1.2;
             color: #fff;
             margin-bottom: 25px;
             text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            word-wrap: break-word; /* Prevent long words from breaking mobile layout */
         }
 
         .article-meta-bottom {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             color: var(--text-muted);
             font-size: 14px;
             align-items: center;
+            flex-wrap: wrap; /* Fix horizontal overflow on mobile */
         }
 
         .author-box {
@@ -104,16 +102,17 @@
             display: grid;
             grid-template-columns: 1fr 340px;
             gap: 60px;
-            padding: 60px 8%;
+            padding: 40px 8% 60px; /* Reduced top padding for mobile */
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .article-content {
-            font-size: 18px;
+            font-size: 18px; /* Slightly smaller for better mobile reading if needed, scalable */
             line-height: 1.8;
             color: #ddd;
-            animation: fadeInBody 1s ease 1s backwards; /* delayed body animation */
+            animation: fadeInBody 1s ease 0.6s backwards;
+            overflow-wrap: break-word; /* Important for long links/words */
         }
         
         @keyframes fadeInBody {
@@ -126,19 +125,20 @@
         }
 
         .article-content h2 {
-            font-size: 28px;
+            font-size: clamp(24px, 4vw, 28px);
             color: #fff;
             margin: 40px 0 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid #222;
+            line-height: 1.3;
         }
 
         .article-content blockquote {
             background: linear-gradient(90deg, rgba(255,179,0,0.1) 0%, transparent 100%);
             border-left: 4px solid var(--primary-color);
-            padding: 20px 30px;
+            padding: 20px 25px;
             margin: 35px 0;
-            font-size: 22px;
+            font-size: clamp(18px, 3vw, 22px);
             font-style: italic;
             color: #fff;
             border-radius: 0 8px 8px 0;
@@ -156,13 +156,12 @@
             margin: 30px 0;
             border: 1px solid #222;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            /* Soft float animation for the main image */
             animation: float 6s ease-in-out infinite;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-            50% { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(255, 179, 0, 0.15); }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-5px) scale(1.02); }
         }
 
         .article-tags {
@@ -171,6 +170,7 @@
             margin-top: 50px;
             padding-top: 30px;
             border-top: 1px solid #222;
+            flex-wrap: wrap; /* Mobile fix */
         }
 
         .tag {
@@ -180,7 +180,7 @@
             border-radius: 30px;
             font-size: 13px;
             text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .tag:hover {
@@ -193,6 +193,7 @@
             display: flex;
             gap: 15px;
             margin-bottom: 40px;
+            flex-wrap: wrap; /* Mobile fix */
         }
 
         .share-btn {
@@ -207,20 +208,19 @@
             color: #fff;
             font-size: 18px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s ease;
         }
 
         .share-btn:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
-            transform: translateY(-8px) rotate(15deg) scale(1.1);
-            box-shadow: 0 10px 20px rgba(255, 179, 0, 0.3);
+            transform: translateY(-5px) scale(1.1);
         }
 
         /* Reading Progress Bar Overlay */
         .reading-progress-container {
             position: fixed;
-            top: 80px; /* Below the sticky header */
+            top: 80px;
             left: 0;
             width: 100%;
             height: 3px;
@@ -238,6 +238,12 @@
         @media (max-width: 1024px) {
             .article-body-wrapper {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reading-progress-container {
+                top: 0; /* Align with mobile hamburger flow dynamically if needed */
             }
         }
     </style>
