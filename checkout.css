@@ -454,7 +454,7 @@ p1 { font-size: 27px; color: #fff; font-weight: bold; white-space: nowrap; }
     overflow: hidden;
 }
 
-.platform-card input[type=\"radio\"] { display: none; }
+.platform-card input[type="radio"] { display: none; }
 
 .platform-card i { font-size: 28px; color: #666; transition: var(--trans); }
 .platform-card span { font-size: 13px; font-weight: 600; color: #666; transition: var(--trans); }
@@ -507,7 +507,7 @@ p1 { font-size: 27px; color: #fff; font-weight: bold; white-space: nowrap; }
     overflow: hidden;
 }
 
-.edition-card input[type=\"radio\"] { display: none; }
+.edition-card input[type="radio"] { display: none; }
 
 .edition-card:hover { border-color: var(--border-gold); }
 

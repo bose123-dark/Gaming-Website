@@ -1,19 +1,6 @@
 /* ============================================================
    GLOBAL RESET & BASE
    ============================================================ */
-:root {
-    --primary-color: #ffb300;
-    --primary-glow: rgba(255, 179, 0, 0.4);
-    --secondary-color: #ff007b;
-    --cyan-color: #00eaff;
-    --bg-dark: #000;
-    --bg-panel: #111;
-    --bg-glass: rgba(20, 20, 20, 0.6);
-    --text-main: #fff;
-    --text-muted: #ccc;
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -23,35 +10,6 @@
 body {
     overflow-x: hidden;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    scroll-behavior: smooth;
-}
-
-/* Global Utility Classes */
-.glass-panel {
-    background: var(--bg-glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 179, 0, 0.1);
-    border-radius: 12px;
-}
-
-.neon-border {
-    border: 1px solid var(--primary-glow);
-    box-shadow: 0 0 15px var(--primary-glow);
-}
-
-.page-reveal {
-    animation: revealEffect 0.8s ease-out forwards;
-}
-
-@keyframes revealEffect {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.section-padding {
-    padding: 80px 8%;
 }
 
 /* ============================================================
@@ -103,25 +61,23 @@ p1 {
 .head2 {
     list-style-type: none;
     display: flex;
-    gap: 10px;
+    gap: 30px;
     color: white;
-}
-
-.head2 li {
-    display: flex;
-    align-items: center;
-}
-
-.head2 li a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    padding: 10px 15px;
-    display: block;
     cursor: pointer;
 }
 
-.head2 li a:hover {
+/* Fix for navigation links */
+.head2 a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.head2 li:hover a {
+    color: orange;
+}
+
+.head2 li:hover {
     color: orange;
 }
 
@@ -1278,33 +1234,4 @@ html {
 .gw-comment-item:hover .gw-comment-author-name {
     color: orange;
     transition: color 0.3s ease;
-}
-
-/* ============================================================
-   SHARED PAGE STYLES (NEW)
-   ============================================================ */
-.page-container {
-    padding: 60px 8%;
-    background-color: #000;
-    min-height: calc(100vh - 80px);
-}
-
-.section-title {
-    font-size: 32px;
-    color: orange;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    display: inline-block;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60%;
-    height: 3px;
-    background-color: orange;
 }
