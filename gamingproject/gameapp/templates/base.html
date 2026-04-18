@@ -1,0 +1,222 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dark Game{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- We'll keep the page-specific CSS in the block below -->
+    {% block extra_css %}{% endblock %}
+    
+    <link rel="stylesheet" href="{% static 'css/cookie-banner.css' %}">
+    
+    <style>
+        /* Shared Header Styles for Authentication */
+        .user-auth-zone {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-id-display {
+            color: var(--primary-color, #ffb300);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 179, 0, 0.3);
+            border: 1px solid rgba(255, 179, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 4px;
+            background: rgba(255, 179, 0, 0.05);
+        }
+        .head-btn-logout {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .head-btn-logout:hover {
+            border-color: #e63946;
+            color: #e63946;
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+        }
+
+        /* Footer Premium Styles */
+        .gw-footer-section {
+            background-color: #000;
+            background-image: repeating-linear-gradient(-45deg, #0a0a0a, #0a0a0a 2px, #000 2px, #000 6px);
+            padding: 60px 0; /* Vertical padding only */
+            color: #fff;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 179, 0, 0.2);
+        }
+        .gw-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1280px;
+            margin: 0 auto;
+            gap: 30px;
+            justify-content: space-between;
+            padding: 0 5%; /* Matches header and body */
+        }
+        .gw-footer-col {
+            flex: 1 1 260px;
+        }
+        .gw-panel {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        .gw-panel:hover {
+            border-color: rgba(255, 179, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+        }
+        .gw-panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 179, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-links li {
+            transition: transform 0.3s ease;
+        }
+        .footer-links li:hover {
+            transform: translateX(10px);
+        }
+        .footer-links a {
+            color: #888;
+            font-size: 13px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .footer-links a i {
+            font-size: 10px;
+            color: #ffb300;
+            opacity: 0.7;
+        }
+        .footer-links a:hover {
+            color: #ffb300 !important;
+            text-shadow: 0 0 10px rgba(255, 179, 0, 0.5);
+        }
+        .gw-brand-title { font-size: 26px; font-weight: bold; color: #fff; }
+        .gw-brand-title span { color: #ffb300; }
+        .gw-brand-desc { color: #888; font-size: 14px; line-height: 1.7; margin-top: 15px; }
+        
+        /* Typewriter Cursor */
+        .typewriter-cursor {
+            color: #ffb300;
+            font-weight: bold;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="page-reveal">
+
+    <!-- TOP HEADER -->
+    <div class="first-border">
+        <div id="header-content1">
+            <i class="fa fa-anchor head-icon"></i>
+            <p1>Dark <span class="game-color">Game</span></p1>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div id="header-content2">
+            <ol class="head2">
+               <li><a href="{% url 'index' %}">Home</a></li>
+               <li><a href="{% url 'store' %}">Store</a></li>
+               <li><a href="{% url 'blog' %}">Blog</a></li>
+               <li><a href="{% url 'contact' %}">Contact</a></li>
+               <li><a href="{% url 'library' %}">Library</a></li>
+            </ol>
+        </div>
+
+        <div id="header-content3">
+            {% if user.is_authenticated %}
+                <div class="user-auth-zone">
+                    <span class="user-id-display"><i class="fa fa-user-circle"></i> {{ user.username|upper }}</span>
+                    <a href="{% url 'logout' %}" style="text-decoration: none;">
+                        <button class="head-btn-logout" type="button">LOGOUT</button>
+                    </a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" style="text-decoration: none;">
+                    <button class="head-btn1" type="button">Login / Register</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <!-- FOOTER (Shared across most pages) -->
+    {% block footer %}
+    <div class="gw-footer-section">
+        <div class="gw-footer-container">
+            <div class="gw-footer-col">
+                <div class="gw-brand">
+                    <div class="gw-brand-icon">
+                        <div class="gw-brand-bar"></div>
+                        <div class="gw-brand-bar"></div>
+                        <div class="gw-brand-bar"></div>
+                    </div>
+                    <div class="gw-brand-title">Dark <span>Game</span></div>
+                </div>
+                <p class="gw-brand-desc" id="footerDesc">Latest Game Releases & Updates Here and Breaking Gaming News & Release Updates</p>
+                {% block footer_image %}{% endblock %}
+            </div>
+            
+            {% block extra_footer_cols %}
+            <div class="gw-footer-col gw-panel">
+                <div class="gw-panel-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="{% url 'store' %}"><i class="fa fa-chevron-right"></i> Game Store</a></li>
+                    <li><a href="{% url 'library' %}"><i class="fa fa-chevron-right"></i> My Library</a></li>
+                    <li><a href="{% url 'blog' %}"><i class="fa fa-chevron-right"></i> Gaming Blog</a></li>
+                    <li><a href="{% url 'contact' %}"><i class="fa fa-chevron-right"></i> Support</a></li>
+                </ul>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    {% endblock %}
+
+    <!-- Common Scripts -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu   = document.getElementById('header-content2');
+        if(hamburger && navMenu) {
+            hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+        }
+    </script>
+    <script src="{% static 'js/cookie-banner.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

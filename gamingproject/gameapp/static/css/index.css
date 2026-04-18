@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Access | Login | Dark Game</title>
-    <style>
 /* ============================================================
    GLOBAL RESET & BASE
    ============================================================ */
-:root {
-    --primary-color: #ffb300;
-    --primary-glow: rgba(255, 179, 0, 0.4);
-    --secondary-color: #ff007b;
-    --cyan-color: #00eaff;
-    --bg-dark: #000;
-    --bg-panel: #111;
-    --bg-glass: rgba(20, 20, 20, 0.6);
-    --text-main: #fff;
-    --text-muted: #ccc;
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -30,35 +10,6 @@
 body {
     overflow-x: hidden;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    scroll-behavior: smooth;
-}
-
-/* Global Utility Classes */
-.glass-panel {
-    background: var(--bg-glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 179, 0, 0.1);
-    border-radius: 12px;
-}
-
-.neon-border {
-    border: 1px solid var(--primary-glow);
-    box-shadow: 0 0 15px var(--primary-glow);
-}
-
-.page-reveal {
-    animation: revealEffect 0.8s ease-out forwards;
-}
-
-@keyframes revealEffect {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.section-padding {
-    padding: 80px 8%;
 }
 
 /* ============================================================
@@ -93,7 +44,7 @@ p1 {
     font-size: 27px;
     color: white;
     font-weight: bold;
-    white-space: nowrap;
+        white-space: nowrap;
 }
 
 .game-color {
@@ -110,25 +61,23 @@ p1 {
 .head2 {
     list-style-type: none;
     display: flex;
-    gap: 10px;
+    gap: 30px;
     color: white;
-}
-
-.head2 li {
-    display: flex;
-    align-items: center;
-}
-
-.head2 li a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    padding: 10px 15px;
-    display: block;
     cursor: pointer;
 }
 
-.head2 li a:hover {
+/* Fix for navigation links */
+.head2 a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.head2 li:hover a {
+    color: orange;
+}
+
+.head2 li:hover {
     color: orange;
 }
 
@@ -189,8 +138,7 @@ p1 {
 }
 
 .second-header1 {
-    padding: 120px 8% 0;
-    max-width: 620px;
+    padding: 120px 0 0 40px;
 }
 
 .second-head-topic {
@@ -231,7 +179,7 @@ p1 {
 .another-home {
     display: flex;
     gap: 10px;
-    padding: 0 8%;
+    padding-left: 40px;
     margin-top: 30px;
 }
 
@@ -337,7 +285,7 @@ p1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     padding: 60px 40px;
 }
 
@@ -494,11 +442,9 @@ p1 {
 }
 
 .recent-down-border {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -742,9 +688,7 @@ p1 {
 }
 
 .reviews-border {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 40px;
@@ -1286,305 +1230,3 @@ html {
     color: orange;
     transition: color 0.3s ease;
 }
-
-/* ============================================================
-   SHARED PAGE STYLES (NEW)
-   ============================================================ */
-.page-container {
-    padding: 60px 8%;
-    background-color: #000;
-    min-height: calc(100vh - 80px);
-}
-
-.section-title {
-    font-size: 32px;
-    color: orange;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    display: inline-block;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60%;
-    height: 3px;
-    background-color: orange;
-}
-
-</style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        /* Login Specific Styles */
-        .login-wrapper {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Matrix-like data stream background */
-        .data-stream {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.05;
-            background: linear-gradient(rgba(255, 179, 0, 0.1) 2px, transparent 2px),
-                        linear-gradient(90deg, rgba(255, 179, 0, 0.1) 2px, transparent 2px);
-            background-size: 50px 50px;
-            animation: moveStream 20s linear infinite;
-        }
-
-        @keyframes moveStream {
-            from { transform: translateY(0); }
-            to { transform: translateY(50px); }
-        }
-
-        .auth-card {
-            width: 100%;
-            max-width: 450px;
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(25px);
-            padding: 50px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 179, 0, 0.1);
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .auth-logo i {
-            font-size: 48px;
-            color: var(--primary-color);
-            filter: drop-shadow(0 0 10px var(--primary-glow));
-        }
-
-        .auth-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: #555;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            padding-bottom: 8px;
-            transition: var(--transition-smooth);
-            position: relative;
-        }
-
-        .tab-btn.active {
-            color: var(--primary-color);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            box-shadow: 0 0 10px var(--primary-color);
-        }
-
-        .auth-input-group {
-            margin-bottom: 25px;
-        }
-
-        .auth-input {
-            width: 100%;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid #222;
-            padding: 15px 20px;
-            color: #fff;
-            border-radius: 8px;
-            outline: none;
-            transition: var(--transition-smooth);
-            font-size: 14px;
-        }
-
-        .auth-input:focus {
-            border-color: var(--primary-color);
-            background: rgba(255, 179, 0, 0.05);
-            box-shadow: 0 0 15px rgba(255, 179, 0, 0.1);
-        }
-
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            box-shadow: 0 0 15px var(--primary-color);
-            display: none;
-            z-index: 5;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary-color);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px var(--primary-glow);
-        }
-
-        .back-home {
-            position: absolute;
-            top: 40px;
-            left: 8%;
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .back-home:hover {
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 480px) {
-            .auth-card { padding: 30px 20px; border-radius: 0; height: 100%; max-width: 100%; }
-            .back-home { top: 20px; left: 20px; }
-        }
-    </style>
-</head>
-<body class="page-reveal">
-
-    <div class="login-wrapper">
-        <div class="data-stream"></div>
-        <div class="scan-line" id="scanLine"></div>
-
-        <a href="index.html" class="back-home">
-            <i class="fa fa-chevron-left"></i> RETURN TO HOME
-        </a>
-
-        <div class="auth-card">
-            <div class="auth-logo">
-                <i class="fa fa-shield"></i>
-                <h2 style="margin-top: 15px; font-size: 20px; letter-spacing: 4px;">NEURAL <span style="color: var(--primary-color);">ACCESS</span></h2>
-            </div>
-
-            <div class="auth-tabs">
-                <button class="tab-btn active" onclick="toggleAuth('login')">Login</button>
-                <button class="tab-btn" onclick="toggleAuth('register')">Sign Up</button>
-            </div>
-
-            <form id="authForm">
-                <div class="auth-input-group">
-                    <input type="text" class="auth-input" placeholder="NEURAL ID / USERNAME" required>
-                </div>
-                
-                <div class="auth-input-group" id="emailGroup" style="display: none;">
-                    <input type="email" class="auth-input" placeholder="NEURAL LINK (EMAIL)">
-                </div>
-
-                <div class="auth-input-group">
-                    <input type="password" class="auth-input" placeholder="ACCESS KEY (PASSWORD)" required>
-                </div>
-
-                <button class="submit-btn" type="submit" id="submitBtn">IDENTIFY</button>
-            </form>
-
-            <div style="margin-top: 30px; text-align: center;">
-                <p style="font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 1px;">Secure Connection Encrypted (AES-256)</p>
-                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; color: #555;">
-                    <i class="fa fa-discord" style="cursor: pointer;"></i>
-                    <i class="fa fa-steam" style="cursor: pointer;"></i>
-                    <i class="fa fa-twitch" style="cursor: pointer;"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleAuth(type) {
-            const tabs = document.querySelectorAll('.tab-btn');
-            const emailGroup = document.getElementById('emailGroup');
-            const submitBtn = document.getElementById('submitBtn');
-            const scanLine = document.getElementById('scanLine');
-
-            tabs.forEach(t => t.classList.remove('active'));
-            if (type === 'login') {
-                tabs[0].classList.add('active');
-                emailGroup.style.display = 'none';
-                submitBtn.innerText = 'IDENTIFY';
-            } else {
-                tabs[1].classList.add('active');
-                emailGroup.style.display = 'block';
-                submitBtn.innerText = 'CREATE LINK';
-            }
-        }
-
-        // Biometric Scan Simulation
-        document.getElementById('authForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const scanLine = document.getElementById('scanLine');
-            const btn = document.getElementById('submitBtn');
-            
-            scanLine.style.display = 'block';
-            btn.innerText = 'SCANNING...';
-            btn.disabled = true;
-
-            // Move the scan line
-            let pos = 0;
-            const interval = setInterval(() => {
-                if (pos >= window.innerHeight) {
-                    clearInterval(interval);
-                    scanLine.style.display = 'none';
-                    btn.innerText = 'ACCESS GRANTED';
-                    btn.style.background = '#00ff7b';
-                    setTimeout(() => {
-                        window.location.href = 'library.html';
-                    }, 1000);
-                } else {
-                    pos += 20;
-                    scanLine.style.top = pos + 'px';
-                }
-            }, 20);
-        });
-    </script>
-
-</body>
-</html>
-

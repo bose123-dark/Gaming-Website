@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Command Center | Player Library | Dark Game{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/library.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- LIBRARY DASHBOARD -->
+    <div class="library-dashboard">
+        <div class="dashboard-header">
+            <div class="player-profile">
+                <div class="avatar-frame">
+                    <img src="{% static 'images/sung-jinwoo.jpg' %}" class="avatar-img" alt="Player">
+                    <div class="level-badge" data-value="42" data-prefix="LVL ">LVL 0</div>
+                </div>
+                <div>
+                    <h1 style="font-size: 42px; color: #fff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 3px;">
+                        {% if user.is_authenticated %}{{ user.username|upper }}{% else %}SHADOW{% endif %} <span style="color: orange;">HUNTER</span>
+                    </h1>
+                    <p style="color: var(--primary-color); font-size: 14px; font-weight: bold; letter-spacing: 3px; display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 8px; height: 8px; background: orange; border-radius: 50%;"></span>
+                        {% if user.is_authenticated %}ACTIVE OPERATIVE{% else %}ELITE RANKED PLAYER{% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="stat-rings">
+                <div class="ring-item" title="Experience Points">
+                    <svg class="ring-svg"><circle class="ring-bg" cx="35" cy="35" r="32"></circle><circle class="ring-progress" cx="35" cy="35" r="32" data-offset="36"></circle></svg>
+                    <div class="ring-val" data-value="82" data-suffix="%">0</div>
+                    <span class="ring-label">EXP</span>
+                </div>
+                <!-- ... other rings ... -->
+                <div class="ring-item" title="Games Collection">
+                    <svg class="ring-svg"><circle class="ring-bg" cx="35" cy="35" r="32"></circle><circle class="ring-progress" cx="35" cy="35" r="32" data-offset="120" style="stroke: var(--secondary-color);"></circle></svg>
+                    <div class="ring-val" data-value="12" data-suffix="">0</div><span class="ring-label">GAMES</span>
+                </div>
+                <div class="ring-item" title="Total Play Time">
+                    <svg class="ring-svg"><circle class="ring-bg" cx="35" cy="35" r="32"></circle><circle class="ring-progress" cx="35" cy="35" r="32" data-offset="80" style="stroke: var(--cyan-color);"></circle></svg>
+                    <div class="ring-val" data-value="248" data-suffix="h">0h</div><span class="ring-label">TIME</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="library-content-grid">
+            <div class="main-collection">
+                <h3 class="sidebar-title"><i class="fa fa-th-large"></i> System Collection</h3>
+                <div class="collection-grid">
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap"><img src="{% static 'images/cyberpunk.jpg' %}" alt="Game"><div class="card-overlay"><button class="play-btn"><i class="fa fa-play"></i> LAUNCH</button></div></div>
+                        <div class="progress-meta"><span>STORY PROGRESS</span><span class="stat-num" data-value="68" data-suffix="%">75%</span></div>
+                        <div class="progress-container"><div class="progress-bar" data-width="68"></div></div>
+                    </div>
+                    <!-- ... other collection items ... -->
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap"><img src="{% static 'images/Elden-Ring.jpg' %}" alt="Game"><div class="card-overlay"><button class="play-btn"><i class="fa fa-play"></i> LAUNCH</button></div></div>
+                        <div class="progress-meta"><span>PROGRESS</span><span class="stat-num" data-value="100" data-suffix="%">100%</span></div>
+                        <div class="progress-container"><div class="progress-bar" data-width="100" style="background: var(--cyan-color);"></div></div>
+                    </div>
+                    <div class="horizontal-card">
+                        <div class="card-image-wrap"><img src="{% static 'images/venom.jpg' %}" alt="Game"><div class="card-overlay"><button class="play-btn"><i class="fa fa-play"></i> LAUNCH</button></div></div>
+                        <div class="progress-meta"><span>PROGRESS</span><span class="stat-num" data-value="15" data-suffix="%">20%</span></div>
+                        <div class="progress-container"><div class="progress-bar" data-width="15"></div></div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- NEURAL TRANSMISSIONS (HISTORY) -->
+                <div class="transaction-history" style="margin-top: 40px;">
+                    <h3 class="sidebar-title"><i class="fa fa-history"></i> Neural Transmissions</h3>
+                    <div class="history-list">
+                        {% for order in orders %}
+                            <div class="history-item" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid var(--primary-color);">
+                                <div>
+                                    <div style="font-weight: bold; color: #fff; text-transform: uppercase;">{{ order.game_name }}</div>
+                                    <div style="font-size: 11px; color: #888;">{{ order.order_date|date:"F d, Y" }}</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--primary-color); font-weight: bold;">${{ order.price }}</div>
+                                    <div style="font-size: 10px; color: #00ff7b;">DEPLOYED</div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div style="color: #666; font-style: italic; padding: 20px; text-align: center; border: 1px dashed #333; border-radius: 8px;">
+                                No previous transmissions found in this sector.
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="friends-sidebar">
+                <h3 class="sidebar-title"><i class="fa fa-users"></i> Neural Links</h3>
+                <div class="friend-row" data-status="online"><div class="avatar-wrap"><img src="{% static 'images/peakpx.jpg' %}" class="friend-avatar" alt="Friend"><div class="status-indicator"></div></div><div class="friend-info"><h5>Iron Sniper</h5><span class="friend-status" style="color: #00ff7b;">Playing Cyberpunk</span></div></div>
+                <div class="friend-row" data-status="offline"><div class="avatar-wrap"><img src="{% static 'images/groot.jpg' %}" class="friend-avatar" alt="Friend"><div class="status-indicator"></div></div><div class="friend-info"><h5>Flora Guard</h5><span class="friend-status">Offline</span></div></div>
+                <button class="head-btn1 interactive-btn" style="width: 100%; margin-top: 20px; border-radius: 12px; height: 50px;"><i class="fa fa-search"></i> Search Players</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_image %}
+    <div class="gw-character-wrapper"><img src="{% static 'images/demon.jpg' %}" alt="Character"></div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        function animateValue(obj, start, end, duration, suffix = "") {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observerOptions = { threshold: 0.2 };
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.ring-progress').forEach(ring => ring.style.strokeDashoffset = ring.getAttribute('data-offset'));
+                    entry.target.querySelectorAll('.ring-val').forEach(val => animateValue(val, 0, parseInt(val.getAttribute('data-value')), 2000, val.getAttribute('data-suffix')));
+                    document.querySelectorAll('.progress-bar').forEach(bar => bar.style.width = bar.getAttribute('data-width') + '%');
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const dashboardHeader = document.querySelector('.dashboard-header');
+        if (dashboardHeader) statsObserver.observe(dashboardHeader);
+        document.querySelectorAll('.horizontal-card').forEach(s => statsObserver.observe(s));
+    </script>
+{% endblock %}

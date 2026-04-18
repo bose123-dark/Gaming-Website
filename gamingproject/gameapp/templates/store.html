@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The Forge | Game Store | Dark Game{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+    <style>
+        .bg-cyberpunk { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/cyberpunk.jpg" %}'); background-size: cover; background-position: center; }
+        .bg-elden     { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/Elden-Ring.jpg" %}'); background-size: cover; background-position: center; }
+        .bg-spiderman { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/spiderman2.jpg" %}'); background-size: cover; background-position: center; }
+        .bg-re9       { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/resident-evil-9.jpeg" %}'); background-size: cover; background-position: center; }
+        .bg-ghost     { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/ghost-of-tsushima.jpg" %}'); background-size: cover; background-position: center; }
+        .bg-dbd       { background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url('{% static "images/dead-by-daylight.jpg" %}'); background-size: cover; background-position: center; }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- STORE HERO -->
+    <div class="store-hero">
+        <div class="hero-content">
+            <span class="hero-tag">New Release</span>
+            <h1 class="second-head-topic">NEON <span class="second-color">NIGHTS</span></h1>
+            <p class="second-head-content" id="hero-typewriter">Step into the high-octane world of cybernetic warfare. Limited edition skins available now.</p>
+            <button class="second-head-btn2" type="button">View Offer</button>
+        </div>
+        <img src="{% static 'images/rdr2.jpg' %}" alt="Hero Character" class="hero-character">
+    </div>
+
+    <!-- FILTERS & SEARCH -->
+    <div class="filter-section">
+        <div class="filter-group">
+            <button class="filter-btn active">All Games</button>
+            <button class="filter-btn">Action</button>
+            <button class="filter-btn">RPG</button>
+            <button class="filter-btn">Strategy</button>
+            <button class="filter-btn">Simulation</button>
+            <button class="filter-btn">Free to Play</button>
+        </div>
+        <div class="search-box">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search the armory...">
+        </div>
+    </div>
+
+    <!-- MAIN CATALOG -->
+    <div class="game-catalog">
+        <!-- Game Card 1 -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-cyberpunk">
+                    <div class="list-new1">ULTRA</div>
+                    <p class="list-topic">Cyberpunk 2077</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">Cyberpunk 2077</p>
+                    <p class="list-content">Explore the vast metropolis of Night City. Phantom Liberty expansion included.</p>
+                    <div class="price-tag">$59.99</div>
+                    <div class="platform-icons">
+                        <i class="fa fa-windows"></i>
+                        <i class="fa fa-playstation"></i>
+                        <i class="fa fa-gamepad"></i>
+                    </div>
+                    <a href="{% url 'checkout' %}?game=Cyberpunk+2077&amp;price=59.99&amp;genre=Open+World+RPG" style="text-decoration:none;"><button class="three-btn1" type="button">Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- More cards... (Keep original logic) -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-elden">
+                    <div class="list-new2">GOTY</div>
+                    <p class="list-topic">Elden Ring</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">Elden Ring</p>
+                    <p class="list-content">The Lands Between await. Master the power of the Elden Ring.</p>
+                    <div class="price-tag">$49.99</div>
+                    <div class="platform-icons"><i class="fa fa-windows"></i><i class="fa fa-playstation"></i></div>
+                    <a href="{% url 'checkout' %}?game=Elden+Ring&amp;price=49.99&amp;genre=Action+RPG" style="text-decoration:none;"><button class="three-btn1" type="button">Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-spiderman">
+                    <div class="list-new">New</div>
+                    <p class="list-topic">Spider-Man 2</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">Spider-Man 2</p>
+                    <p class="list-content">Greater together. Play as Peter and Miles in this definitive superhero saga.</p>
+                    <div class="price-tag">$69.99</div>
+                    <div class="platform-icons"><i class="fa fa-windows"></i><i class="fa fa-playstation"></i></div>
+                    <a href="{% url 'checkout' %}?game=Spider-Man+2&amp;price=69.99&amp;genre=Action+Adventure" style="text-decoration:none;"><button class="three-btn1" type="button">Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-re9">
+                    <div class="list-new1">Classic</div>
+                    <p class="list-topic">RE 9</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">RE 9</p>
+                    <p class="list-content">Survival is just the beginning. The horror masterpiece reimagined.</p>
+                    <div class="price-tag">$39.99</div>
+                    <div class="platform-icons"><i class="fa fa-windows"></i><i class="fa fa-playstation"></i></div>
+                    <a href="{% url 'checkout' %}?game=Resident+Evil+9&amp;price=39.99&amp;genre=Survival+Horror" style="text-decoration:none;"><button class="three-btn1" type="button">Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-ghost">
+                    <div class="list-new3">Best</div>
+                    <p class="list-topic">Ghost of Tsushima</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">Ghost of Tsushima</p>
+                    <p class="list-content">Defend Tsushima from the Mongol invasion. A stunning samurai epic.</p>
+                    <div class="price-tag">$29.99</div>
+                    <div class="platform-icons"><i class="fa fa-playstation"></i><i class="fa fa-windows"></i></div>
+                    <a href="{% url 'checkout' %}?game=Ghost+of+Tsushima&amp;price=29.99&amp;genre=Action+Adventure" style="text-decoration:none;"><button class="three-btn1" type="button">Buy Now</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front bg-dbd">
+                    <div class="list-new2">Online</div>
+                    <p class="list-topic">D.B.D</p>
+                </div>
+                <div class="flip-card-back">
+                    <p class="list-topic" style="color: var(--primary-color);">Dead By Daylight</p>
+                    <p class="list-content">Death is not an escape. A 4v1 horror multiplayer experience.</p>
+                    <div class="price-tag">$20.55</div>
+                    <div class="platform-icons"><i class="fa fa-windows"></i><i class="fa fa-playstation"></i><i class="fa fa-steam"></i></div>
+                    <a href="{% url 'checkout' %}?game=Dead+By+Daylight&amp;price=0&amp;genre=Multiplayer+Horror" style="text-decoration:none;"><button class="three-btn1" type="button">Play Now</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_image %}
+    <div class="gw-character-wrapper">
+        <img class="big-image" src="{% static 'images/demon.jpg' %}" alt="Character">
+    </div>
+{% endblock %}
+
+{% block extra_footer_cols %}
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Latest Posts</div>
+        <div class="gw-post-list">
+            <div class="gw-post-item">
+                <img src="{% static 'images/gta-6.jpg' %}" alt="Post" class="gw-post-img">
+                <div class="gw-post-info">
+                    <div class="gw-post-date">Jan 21, 2027</div>
+                    <div class="gw-post-title">Rockstar's upcoming Grand Theft Auto VI</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Top Comments</div>
+        <div class="gw-comment-list">
+            <div class="gw-comment-item">
+                <img src="{% static 'images/sung-jinwoo.jpg' %}" alt="Avatar" class="gw-comment-avatar">
+                <div class="gw-comment-info">
+                    <div class="gw-comment-text"><span class="gw-comment-author-name">Shadow Hunter</span> This review really helped me decide!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        function startTypewriter(elementId, delay = 0) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            const textToType = element.innerText;
+            element.innerHTML = '';
+            let charIndex = 0;
+            function typeWriter() {
+                if (charIndex <= textToType.length) {
+                    element.innerHTML = textToType.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
+                    charIndex++;
+                    setTimeout(typeWriter, 35);
+                } else { element.innerHTML = textToType; }
+            }
+            setTimeout(typeWriter, delay);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            startTypewriter('hero-typewriter', 800);
+            const footerDesc = document.querySelector('.gw-brand-desc');
+            const footerSection = document.querySelector('.gw-footer-section');
+            if (footerDesc && footerSection) {
+                const footerText = footerDesc.innerText;
+                footerDesc.innerHTML = '';
+                let hasTypedFooter = false;
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !hasTypedFooter) {
+                        hasTypedFooter = true;
+                        let charIndex = 0;
+                        function footerTypeWriter() {
+                            if (charIndex <= footerText.length) {
+                                footerDesc.innerHTML = footerText.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
+                                charIndex++;
+                                setTimeout(footerTypeWriter, 35);
+                            } else { footerDesc.innerHTML = footerText; }
+                        }
+                        setTimeout(footerTypeWriter, 400);
+                    }
+                }, { threshold: 0.2 });
+                observer.observe(footerSection);
+            }
+        });
+    </script>
+{% endblock %}

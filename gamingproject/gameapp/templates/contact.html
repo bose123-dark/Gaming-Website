@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Security Portal | Contact Us | Dark Game{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="contact-view">
+        <div class="contact-grid">
+            <div class="portal-info">
+                <div class="status-badge"><div class="status-dot"></div> Direct Link: Active</div>
+                <h1 style="font-size: clamp(32px, 5vw, 64px); color: #fff; line-height: 1.1;">SECURITY<br><span style="color: orange;">PORTAL</span></h1>
+                <p id="typewriter-contact" style="color: #888; margin: 25px 0; font-size: 16px; line-height: 1.8;">If you've encountered a breach in your neural experience or have technical questions about "The Forge", our agents are standing by.</p>
+                <div class="faq-section">
+                    <div class="faq-item">
+                        <button class="faq-trigger">How do I reset my neural pass? <i class="fa fa-chevron-down"></i></button>
+                        <div class="faq-content">Head to the Login portal and select "Recovery Mode".</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-node">
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label>Identity / Username</label>
+                        <input type="text" placeholder="{% if user.is_authenticated %}{{ user.username }}{% else %}Shadow_Hunter_42{% endif %}" required>
+                    </div>
+                    <div class="input-group"><label>Communication Channel (Email)</label><input type="email" placeholder="access@darkgame.io" required></div>
+                    <div class="input-group"><label>Transmission Subject</label><input type="text" placeholder="Technical Interference" required></div>
+                    <div class="input-group"><label>Your Message</label><textarea rows="5" placeholder="Reporting a bug..." required></textarea></div>
+                    <button type="submit" class="deploy-btn" id="submitBtn">Deploy Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_image %}
+    <div class="gw-character-wrapper"><img class="big-image" src="{% static 'images/onepiece.jpg' %}" alt="Demon Mascot"></div>
+{% endblock %}
+
+{% block extra_footer_cols %}
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">System Logs</div>
+        <div class="gw-post-list">
+            <div class="gw-post-item"><img src="{% static 'images/gta-6.jpg' %}" alt="Log" class="gw-post-img"><div class="gw-post-info"><div>Jan 21, 2027</div><div>GTA VI Neural Patch</div></div></div>
+        </div>
+    </div>
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Top Transmissions</div>
+        <div class="gw-comment-list">
+            <div class="gw-comment-item"><img src="{% static 'images/uncharted.jpg' %}" alt="User" class="gw-comment-avatar"><div class="gw-comment-info"><div>Shadow Hunter</div><div>Fast portal!</div></div></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => trigger.parentNode.classList.toggle('active'));
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'TRANSMITTING...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerText = 'DATA DEPLOYED';
+                btn.style.background = '#00ff7b';
+                setTimeout(() => { btn.innerText = 'DEPLOY MESSAGE'; btn.style.background = ''; btn.disabled = false; this.reset(); }, 2000);
+            }, 1000);
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const contactText = document.getElementById('typewriter-contact');
+            if (contactText) {
+                const textToType = contactText.innerText || contactText.textContent;
+                contactText.innerHTML = '';
+                let charIndex = 0;
+                function type() {
+                    if (charIndex <= textToType.length) {
+                        contactText.innerHTML = textToType.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
+                        charIndex++;
+                        setTimeout(type, 30);
+                    } else { contactText.innerHTML = textToType; }
+                }
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) { type(); observer.disconnect(); }
+                }, { threshold: 0.1 });
+                observer.observe(contactText);
+            }
+        });
+    </script>
+{% endblock %}

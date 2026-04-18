@@ -1,48 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Game</title>
-    <link rel="stylesheet" href="./home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-    <!-- TOP HEADER -->
-    <div class="first-border">
+{% block title %}Dark Game | Action, Adventure, Challenges{% endblock %}
 
-        <div id="header-content1">
-            <i class="fa fa-anchor head-icon"></i>
-            <p1>Dark <span class="game-color">Game</span></p1>
-        </div>
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
-        <!-- Hamburger for mobile -->
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <div id="header-content2">
-            <ol class="head2">
-                <li><a href="./index.html"></a>Home</li>
-                <li><a href="./store.html">Store</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-                <li><a href="library.html">Library</a></li>
-            </ol>
-        </div>
-
-        <div id="header-content3">
-            <button class="head-btn1" type="button">Login / Register</button>
-        </div>
-
-    </div>
-
+{% block content %}
     <!-- HERO SECTION -->
     <div class="second-border">
-
         <div class="second-header1">
             <h1 class="second-head-topic">Level Up Your <span class="second-color">Gaming</span><span id="Experience">Experience</span></h1>
             <p class="second-head-content">Enter a world full of action, adventure, and challenges.
@@ -71,12 +38,11 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- 4 GAME CARDS -->
     <div class="list-main-border">
-
+        <!-- Spiderman 2 -->
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front" id="four-image1">
@@ -87,11 +53,12 @@
                     <p class="list-topic" style="color: orange; margin-top: 15px;">Marvel's Spider-Man 2</p>
                     <p class="list-content" style="text-align: center; margin: 15px 0;">Experience the next level of superhero action in Marvel's Spider-Man 2. Play as both Peter Parker and Miles Morales</p>
                     <p class="list-comment">3 Comment</p>
-                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='checkout.html?game=Marvel%27s%20Spider-Man%202'">Buy Now</button>
+                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='{% url 'checkout' %}?game=Marvel%27s%20Spider-Man%202'">Buy Now</button>
                 </div>
             </div>
         </div>
 
+        <!-- GTA V -->
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front" id="four-image2">
@@ -102,11 +69,12 @@
                     <p class="list-topic" style="color: orange; margin-top: 15px;">Gta V</p>
                     <p class="list-content" style="text-align: center; margin: 15px 0;">GTA V offers a massive open world, thrilling heists, and exciting multiplayer gameplay in Los Santos. Play as three unique characters</p>
                     <p class="list-comment">3 Comment</p>
-                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='checkout.html?game=Gta%20V'">Buy Now</button>
+                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='{% url 'checkout' %}?game=Gta%20V'">Buy Now</button>
                 </div>
             </div>
         </div>
 
+        <!-- God of War -->
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front" id="four-image3">
@@ -117,11 +85,12 @@
                     <p class="list-topic" style="color: orange; margin-top: 15px;">God of 4</p>
                     <p class="list-content" style="text-align: center; margin: 15px 0;">God of War 4 is a powerful action-adventure game that follows Kratos and his son Atreus on a dangerous journey through the world</p>
                     <p class="list-comment">3 Comment</p>
-                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='checkout.html?game=God%20of%204'">Buy Now</button>
+                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='{% url 'checkout' %}?game=God%20of%204'">Buy Now</button>
                 </div>
             </div>
         </div>
 
+        <!-- Uncharted 4 -->
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front" id="four-image4">
@@ -132,80 +101,66 @@
                     <p class="list-topic" style="color: orange; margin-top: 15px;">Uncharted 4</p>
                     <p class="list-content" style="text-align: center; margin: 15px 0;">Uncharted 4: A Thief's End is a cinematic action-adventure game that follows treasure hunter Nathan Drake on his final adventure</p>
                     <p class="list-comment">3 Comment</p>
-                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='checkout.html?game=Uncharted%204'">Buy Now</button>
+                    <button class="three-btn1" type="button" style="margin-top: 15px;" onclick="window.location.href='{% url 'checkout' %}?game=Uncharted%204'">Buy Now</button>
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- RECENT GAMES -->
     <div class="recent-main-border">
-
         <div class="recent-new">New</div>
         <p class="recent-games">Recent Games</p>
-
         <div class="recent-down-border">
-
             <div class="three-flip-card">
                 <div class="three-flip-card-inner">
-                    <!-- Front -->
                     <div class="three-flip-front three-image">
                         <p class="three-adventure">Adventure</p>
                         <p class="three-topic" style="margin-top: auto; margin-bottom: 20px;">It Takes Two</p>
                     </div>
-                    <!-- Back -->
                     <div class="three-flip-back">
                         <p class="three-topic" style="background: none; text-align: center; color: #111; margin-bottom: 15px;">It Takes Two</p>
                         <p class="three-content" style="background: none; text-align: center; color: #111; margin-bottom: 20px;">Experience an unforgettable co-op adventure in It Takes Two, a fun and emotional story about teamwork and friendship</p>
-                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='checkout.html?game=It%20Takes%20Two'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='{% url 'checkout' %}?game=It%20Takes%20Two'">Buy Now</button>
                     </div>
                 </div>
             </div>
 
             <div class="three-flip-card">
                 <div class="three-flip-card-inner">
-                    <!-- Front -->
                     <div class="three-flip-front three-image1">
                         <p class="three-adventure1">Online</p>
                         <p class="three-topic" style="margin-top: auto; margin-bottom: 20px;">Dead By Daylight</p>
                     </div>
-                    <!-- Back -->
                     <div class="three-flip-back">
                         <p class="three-topic" style="background: none; text-align: center; color: #111; margin-bottom: 15px;">Dead By Daylight</p>
                         <p class="three-content" style="background: none; text-align: center; color: #111; margin-bottom: 20px;">Enter a thrilling multiplayer horror experience where one player becomes the killer and the others fight to survive</p>
-                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='checkout.html?game=Dead%20By%20Daylight'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='{% url 'checkout' %}?game=Dead%20By%20Daylight'">Buy Now</button>
                     </div>
                 </div>
             </div>
 
             <div class="three-flip-card">
                 <div class="three-flip-card-inner">
-                    <!-- Front -->
                     <div class="three-flip-front three-image2">
                         <p class="three-adventure2">Adventure</p>
                         <p class="three-topic" style="margin-top: auto; margin-bottom: 20px;">RDR 2</p>
                     </div>
-                    <!-- Back -->
                     <div class="three-flip-back">
                         <p class="three-topic" style="background: none; text-align: center; color: #111; margin-bottom: 15px;">RDR 2</p>
                         <p class="three-content" style="background: none; text-align: center; color: #111; margin-bottom: 20px;">Experience an unforgettable co-op adventure in RDR 2, a fun and emotional story about teamwork and friendship</p>
-                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='checkout.html?game=RDR%202'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 0 auto 15px;" onclick="window.location.href='{% url 'checkout' %}?game=RDR%202'">Buy Now</button>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <!-- TOURNAMENT SECTION -->
     <div class="tournament-main-border">
-
         <div class="tournament-border1">
             <p class="PREMIUM-TOURNAMENT1">TOURNAMENTS</p>
             <p class="PREMIUM-TOURNAMENT">PREMIUM TOURNAMENT</p>
-
             <div class="tournament-image-border">
                 <div class="tournament-image-box"></div>
                 <div class="tournament-image-content">
@@ -221,7 +176,6 @@
 
         <div class="tournament-border2">
             <p class="PREMIUM-TOURNAMENT2">PREMIUM TOURNAMENT</p>
-
             <div class="tournament-image-border">
                 <div class="tournament-image-box2"></div>
                 <div class="tournament-image-content">
@@ -234,193 +188,111 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- RECENT REVIEWS -->
     <div class="recent-reviews-main-border">
-
         <p class="new-reviews">New</p>
         <p class="recent-reviews">Recent Reviews</p>
-
         <div class="reviews-border">
-
-            <!-- Card 1 -->
             <div class="reviews-flip-card">
                 <div class="reviews-flip-card-inner">
-                    <!-- Front -->
                     <div class="reviews-flip-front reviews-card">
-                        <div class="reviews-card-bg">
-                            <p class="circle-review pink">9.5</p>
-                        </div>
+                        <div class="reviews-card-bg"><p class="circle-review pink">9.5</p></div>
                         <p class="reviews-topic">Spider Man 2</p>
                         <p class="reviews-topic2">The story is emotional and action-packed, featuring popular villains like Venom, Kraven</p>
                     </div>
-                    <!-- Back -->
                     <div class="reviews-flip-back">
                         <p class="reviews-topic" style="color: orange; margin-top: 10px; font-size: 24px;">Spider Man 2</p>
                         <p class="circle-review pink" style="position: relative; top: auto; left: auto; margin: 20px auto; width: 60px; height: 60px; font-size: 20px;">9.5</p>
                         <p class="reviews-topic2" style="color: #ccc;">Get ready to swing through the city and fight legendary villains. Includes exclusive pre-order bonuses.</p>
-                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='checkout.html?game=Spider%20Man%202'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='{% url 'checkout' %}?game=Spider%20Man%202'">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="reviews-flip-card">
                 <div class="reviews-flip-card-inner">
-                    <!-- Front -->
                     <div class="reviews-flip-front reviews-card">
-                        <div class="reviews-card-bg1">
-                            <p class="circle-review magenta">9.0</p>
-                        </div>
+                        <div class="reviews-card-bg1"><p class="circle-review magenta">9.0</p></div>
                         <p class="reviews-topic">Infamous Second Son 4</p>
                         <p class="reviews-topic1">The graphics are impressive, with detailed environments, bright neon effects, and realistic lighting</p>
                     </div>
-                    <!-- Back -->
                     <div class="reviews-flip-back">
                         <p class="reviews-topic" style="color: orange; margin-top: 10px; font-size: 22px;">Infamous Second Son 4</p>
                         <p class="circle-review magenta" style="position: relative; top: auto; left: auto; margin: 20px auto; width: 60px; height: 60px; font-size: 20px;">9.0</p>
                         <p class="reviews-topic1" style="color: #ccc;">Unleash your neon powers in this stunning open world adventure. Experience the critically acclaimed sequel.</p>
-                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='checkout.html?game=Infamous%20Second%20Son%204'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='{% url 'checkout' %}?game=Infamous%20Second%20Son%204'">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="reviews-flip-card">
                 <div class="reviews-flip-card-inner">
-                    <!-- Front -->
                     <div class="reviews-flip-front reviews-card">
-                        <div class="reviews-card-bg2">
-                            <p class="circle-review cyan">9.5</p>
-                        </div>
+                        <div class="reviews-card-bg2"><p class="circle-review cyan">9.5</p></div>
                         <p class="reviews-topic">Last Of Us 2</p>
                         <p class="reviews-topic1">The Last of Us Part II is a powerful story-driven action-adventure game set in a dangerous apocalyptic world</p>
                     </div>
-                    <!-- Back -->
                     <div class="reviews-flip-back">
                         <p class="reviews-topic" style="color: orange; margin-top: 10px; font-size: 24px;">Last Of Us 2</p>
                         <p class="circle-review cyan" style="position: relative; top: auto; left: auto; margin: 20px auto; width: 60px; height: 60px; font-size: 20px;">9.5</p>
                         <p class="reviews-topic1" style="color: #ccc;">Survive the apocalypse in this multi-award winning masterpiece. Enhanced graphics and gameplay.</p>
-                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='checkout.html?game=Last%20Of%20Us%202'">Buy Now</button>
+                        <button class="three-btn1" type="button" style="margin: 20px auto 0; padding: 10px 0; width: 130px;" onclick="window.location.href='{% url 'checkout' %}?game=Last%20Of%20Us%202'">Buy Now</button>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
+{% endblock %}
 
+{% block footer_image %}
+    <div class="gw-character-wrapper">
+        <img class="big-image" src="{% static 'images/demon.jpg' %}" alt="Character">
+    </div>
+{% endblock %}
 
-    <!-- FOOTER -->
-    <div class="gw-footer-section">
-        <div class="gw-footer-container">
-
-            <!-- Column 1 -->
-            <div class="gw-footer-col">
-                <div class="gw-brand">
-                    <div class="gw-brand-icon">
-                        <div class="gw-brand-bar"></div>
-                        <div class="gw-brand-bar"></div>
-                        <div class="gw-brand-bar"></div>
-                    </div>
-                    <div class="gw-brand-title">Dark <span>Game</span></div>
-                </div>
-                <p class="gw-brand-desc">Latest Game Releases & Updates Here and Breaking Gaming News & Release Updates</p>
-                <div class="gw-character-wrapper">
-                    <img class="big-image" src="images/demon.jpg" alt="Character">
-                </div>
-            </div>
-
-            <!-- Column 2: Latest Posts -->
-            <div class="gw-footer-col gw-panel">
-                <div class="gw-panel-title">Latest Posts</div>
-                <div class="gw-post-list">
-
-                    <div class="gw-post-item">
-                        <img src="images/gta-6.jpg" alt="Post thumbnail" class="gw-post-img">
-                        <div class="gw-post-info">
-                            <div class="gw-post-date">Jan 21, 2027</div>
-                            <div class="gw-post-title">Rockstar's upcoming Grand Theft Auto VI</div>
-                            <div class="gw-post-author">By rockstar</div>
-                        </div>
-                    </div>
-
-                    <div class="gw-post-item">
-                        <img src="images/lostofus2.jpg" alt="Post thumbnail" class="gw-post-img">
-                        <div class="gw-post-info">
-                            <div class="gw-post-date">June 19, 2020</div>
-                            <div class="gw-post-title">The Last of Us Part II remains one of the strongest story-driven games</div>
-                            <div class="gw-post-author">By Naughty Dog</div>
-                        </div>
-                    </div>
-
-                    <div class="gw-post-item">
-                        <img src="images/venom.jpg" alt="Post thumbnail" class="gw-post-img">
-                        <div class="gw-post-info">
-                            <div class="gw-post-date">Oct 20, 2023</div>
-                            <div class="gw-post-title">Marvel's Spider-Man 2 continues to attract players worldwide</div>
-                            <div class="gw-post-author">By Insomniac Games</div>
-                        </div>
-                    </div>
-
+{% block extra_footer_cols %}
+    {{ block.super }}
+    <!-- Latest Posts -->
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Latest Posts</div>
+        <div class="gw-post-list">
+            <div class="gw-post-item">
+                <img src="{% static 'images/gta-6.jpg' %}" alt="Post thumbnail" class="gw-post-img">
+                <div class="gw-post-info">
+                    <div class="gw-post-date">Jan 21, 2027</div>
+                    <div class="gw-post-title">Rockstar's upcoming Grand Theft Auto VI</div>
+                    <div class="gw-post-author">By rockstar</div>
                 </div>
             </div>
-
-            <!-- Column 3: Top Comments -->
-            <div class="gw-footer-col gw-panel">
-                <div class="gw-panel-title">Top Comments</div>
-                <div class="gw-comment-list">
-
-                    <div class="gw-comment-item">
-                        <img src="images/sung-jinwoo.jpg" alt="User avatar" class="gw-comment-avatar">
-                        <div class="gw-comment-info">
-                            <div class="gw-comment-text"><span class="gw-comment-author-name">Shadow Hunter</span> This review really helped me decide to try the game</div>
-                            <div class="gw-comment-date">Jan 21, 2026</div>
-                        </div>
-                    </div>
-
-                    <div class="gw-comment-item">
-                        <img src="images/avatar.jpg" alt="User avatar" class="gw-comment-avatar">
-                        <div class="gw-comment-info">
-                            <div class="gw-comment-text"><span class="gw-comment-author-name">Dark KnightX</span> I'm waiting for this game release for a long time</div>
-                            <div class="gw-comment-date">June 21, 2025</div>
-                        </div>
-                    </div>
-
-                    <div class="gw-comment-item">
-                        <img src="images/groot.jpg" alt="User avatar" class="gw-comment-avatar">
-                        <div class="gw-comment-info">
-                            <div class="gw-comment-text"><span class="gw-comment-author-name">Venom Strike</span> I already played this game and the action scenes are really exciting</div>
-                            <div class="gw-comment-date">Feb 21, 2025</div>
-                        </div>
-                    </div>
-
-                    <div class="gw-comment-item">
-                        <img src="images/peakpx.jpg" alt="User avatar" class="gw-comment-avatar">
-                        <div class="gw-comment-info">
-                            <div class="gw-comment-text"><span class="gw-comment-author-name">Iron Sniper</span> This website layout looks clean and easy to read</div>
-                            <div class="gw-comment-date">Jan 25, 2026</div>
-                        </div>
-                    </div>
-
+            <div class="gw-post-item">
+                <img src="{% static 'images/lostofus2.jpg' %}" alt="Post thumbnail" class="gw-post-img">
+                <div class="gw-post-info">
+                    <div class="gw-post-date">June 19, 2020</div>
+                    <div class="gw-post-title">The Last of Us Part II remains one of the strongest story-driven games</div>
+                    <div class="gw-post-author">By Naughty Dog</div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Hamburger Toggle Script -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu   = document.getElementById('header-content2');
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
-        });
-    </script>
+    <!-- Top Comments -->
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Top Comments</div>
+        <div class="gw-comment-list">
+            <div class="gw-comment-item">
+                <img src="{% static 'images/sung-jinwoo.jpg' %}" alt="User avatar" class="gw-comment-avatar">
+                <div class="gw-comment-info">
+                    <div class="gw-comment-text"><span class="gw-comment-author-name">Shadow Hunter</span> This review really helped me decide to try the game</div>
+                    <div class="gw-comment-date">Jan 21, 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-
+{% block extra_js %}
     <!-- Hero Slider & Typewriter Script -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -430,15 +302,14 @@
             const heading = document.querySelector('.second-head-topic');
             const content = document.querySelector('.second-head-content');
 
-            // Slide Data 
             const slides = [
                 {
-                    bg: 'url(images/batman.jpg)',
+                    bg: 'url({% static "images/batman.jpg" %})',
                     titleHTML: 'Level Up Your <span class="second-color">Gaming</span><span id="Experience">Experience</span>',
                     text: 'Enter a world full of action, adventure, and challenges. Play the latest games, compete with friends, and unlock achievements. Join now and start your gaming journey today!'
                 },
                 {
-                    bg: 'url(images/onepiece.jpg)', 
+                    bg: 'url({% static "images/onepiece.jpg" %})', 
                     titleHTML: 'Discover The <span class="second-color">Open</span><span id="Experience">World</span>',
                     text: 'Drive, fight, and survive in sprawling cities. Take on thrilling missions, join massive multiplayer lobbies, and become the ultimate kingpin of the underground!'
                 }
@@ -447,10 +318,7 @@
             let typeWriterTimeout;
 
             function renderSlide(index) {
-                // Change Background 
                 heroSection.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 100%), ${slides[index].bg}`;
-                
-                // Toggle Button Colors
                 if(index === 0) {
                     btn1.style.backgroundColor = 'orange';
                     btn2.style.backgroundColor = 'white';
@@ -458,80 +326,49 @@
                     btn1.style.backgroundColor = 'white';
                     btn2.style.backgroundColor = 'orange';
                 }
-
-                // Update Heading
                 heading.innerHTML = slides[index].titleHTML;
-
-                // Stop any ongoing typewriter
                 clearTimeout(typeWriterTimeout);
-                
-                // Start Typewriter Animation for the paragraph
                 let i = 0;
                 const textToType = slides[index].text;
-                
                 function typeWriter() {
                     if (i <= textToType.length) {
                         content.innerHTML = textToType.substring(0, i) + '<span class="typewriter-cursor">|</span>';
                         i++;
                         typeWriterTimeout = setTimeout(typeWriter, 35);
-                    } else {
-                        content.innerHTML = textToType; 
-                    }
+                    } else { content.innerHTML = textToType; }
                 }
                 typeWriter();
             }
-
-            // Button Event Listeners
             btn1.addEventListener('click', () => renderSlide(0));
             btn2.addEventListener('click', () => renderSlide(1));
-
-            // Start the first slide's animation instantly
             renderSlide(0);
         });
     </script>
 
-        <!-- Footer Typewriter Animation Script -->
+    <!-- Footer Typewriter Animation Script -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const footerDesc = document.querySelector('.gw-brand-desc');
             const footerSection = document.querySelector('.gw-footer-section');
-            
-            // The text we want to type out
             const textToType = "Latest Game Releases & Updates Here and Breaking Gaming News & Release Updates";
-            
-            // Erase the text immediately so the area is empty before scrolling down
             footerDesc.innerHTML = '';
-            
             let charIndex = 0;
             let hasTypedFooter = false;
 
             function footerTypeWriter() {
                 if (charIndex <= textToType.length) {
-                    // Reusing your orange blinking .typewriter-cursor class!
                     footerDesc.innerHTML = textToType.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
                     charIndex++;
-                    setTimeout(footerTypeWriter, 35); // Adjust typing speed here (35ms defaults)
-                } else {
-                    // Stop blinking cursor when completely done
-                    footerDesc.innerHTML = textToType; 
-                }
+                    setTimeout(footerTypeWriter, 35);
+                } else { footerDesc.innerHTML = textToType; }
             }
-
-            // Create an observer that watches when the footer enters the screen
             const observer = new IntersectionObserver((entries) => {
-                // If they scroll down and we haven't typed yet...
                 if (entries[0].isIntersecting && !hasTypedFooter) {
                     hasTypedFooter = true;
-                    
-                    // Wait 400 milliseconds before starting to type for a beautiful dramatic reveal
                     setTimeout(footerTypeWriter, 400);
                 }
-            }, { threshold: 0.2 }); // Starts when 20% of the footer is visible on screen
-
+            }, { threshold: 0.2 });
             observer.observe(footerSection);
         });
     </script>
-
-
-</body>
-</html>
+{% endblock %}

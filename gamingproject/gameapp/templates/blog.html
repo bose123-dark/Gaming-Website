@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The Signal | Gaming News | Dark Game{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="reading-progress" id="progressBar"></div>
+
+    <!-- FEATURED ARTICLE -->
+    {% if posts %}
+    {% with posts|first as featured %}
+    <div class="featured-article" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.3) 100%), url('{% static 'images/' %}{{ featured.image_name }}');">
+        <div class="featured-content">
+            <span class="article-tag"><i class="fa fa-bolt"></i> {{ featured.category }}</span>
+            <h1 class="second-head-topic" style="font-size: clamp(32px, 5vw, 64px); max-width: 800px;">
+                {{ featured.title|upper }}
+            </h1>
+            <p class="second-head-content" id="hero-typewriter" style="max-width: 600px;">{{ featured.content|truncatewords:20 }}</p>
+            <button class="second-head-btn2" type="button" onclick="window.location.href='{% url 'article' featured.slug %}'">Read Deep Dive</button>
+        </div>
+    </div>
+    {% endwith %}
+    {% else %}
+    <div class="featured-article" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.3) 100%), url('{% static 'images/gta-6.jpg' %}');">
+        <div class="featured-content">
+            <span class="article-tag"><i class="fa fa-bolt"></i> SYSTEM OFFLINE</span>
+            <h1 class="second-head-topic" style="font-size: clamp(32px, 5vw, 64px); max-width: 800px;">NO DATA FOUND</h1>
+            <p class="second-head-content">Initialize database to see live intel.</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- BLOG CONTENT -->
+    <div class="blog-grid-container">
+        <!-- Main News Feed -->
+        <div class="main-news-grid">
+            {% for post in posts %}
+            <div class="blog-card" onclick="window.location.href='{% url 'article' post.slug %}'" style="cursor: pointer;">
+                <img src="{% static 'images/' %}{{ post.image_name }}" class="blog-card-img" alt="{{ post.title }}">
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">{{ post.category|upper }}</span>
+                        <span>{{ post.date|date:"M d, Y"|upper }}</span>
+                    </div>
+                    <h3 class="post-title">{{ post.title }}</h3>
+                    <p class="small-content" style="max-width: 100%;">{{ post.content|truncatewords:20 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="blog-sidebar">
+            <h3 class="sidebar-title"><i class="fa fa-line-chart"></i> Trending Now</h3>
+            {% for hot in posts|slice:":3" %}
+            <div class="trending-item">
+                <span class="trending-num">0{{ forloop.counter }}</span>
+                <div class="trending-info">
+                    <h4 onclick="window.location.href='{% url 'article' hot.slug %}'" style="cursor: pointer;">{{ hot.title }}</h4>
+                    <span class="blog-meta">{{ forloop.counter|add:2 }}K Shares</span>
+                </div>
+            </div>
+            {% endfor %}
+
+                <div class="newsletter-box">
+                    <h3 class="sidebar-title" style="font-size: 16px; margin-bottom: 10px;">The Signal Briefing</h3>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 20px;">Get the elite gaming news delivered to your neural link weekly.</p>
+                    <input type="email" placeholder="you@multiverse.com">
+                    <button class="head-btn1" style="width: 100%; border-radius: 4px;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_image %}
+    <div class="gw-character-wrapper">
+        <img class="big-image" src="{% static 'images/demon.jpg' %}" alt="Character">
+    </div>
+{% endblock %}
+
+{% block extra_footer_cols %}
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Latest Posts</div>
+        <div class="gw-post-list">
+            {% for recent in posts|slice:":2" %}
+            <div class="gw-post-item" onclick="window.location.href='{% url 'article' recent.slug %}'">
+                <img src="{% static 'images/' %}{{ recent.image_name }}" alt="{{ recent.title }}" class="gw-post-img">
+                <div class="gw-post-info">
+                    <div class="gw-post-date">{{ recent.date|date:"N d, Y" }}</div>
+                    <div class="gw-post-title">{{ recent.title|truncatechars:40 }}</div>
+                    <div class="gw-post-author">By {{ recent.author }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="gw-footer-col gw-panel">
+        <div class="gw-panel-title">Top Comments</div>
+        <div class="gw-comment-list">
+            <div class="gw-comment-item">
+                <img src="{% static 'images/sung-jinwoo.jpg' %}" alt="User avatar" class="gw-comment-avatar">
+                <div class="gw-comment-info">
+                    <div class="gw-comment-text"><span class="gw-comment-author-name">Shadow Hunter</span> This review really helped me decide!</div>
+                    <div class="gw-comment-date">Jan 21, 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        window.onscroll = function () {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            let pb = document.getElementById("progressBar");
+            if(pb) pb.style.width = scrolled + "%";
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const heroTypewriter = document.getElementById('hero-typewriter');
+            if (heroTypewriter) {
+                const heroText = heroTypewriter.innerText;
+                heroTypewriter.innerHTML = '';
+                let charIndex = 0;
+                function heroTypeWriter() {
+                    if (charIndex <= heroText.length) {
+                        heroTypewriter.innerHTML = heroText.substring(0, charIndex) + '<span class="typewriter-cursor">|</span>';
+                        charIndex++;
+                        setTimeout(heroTypeWriter, 35);
+                    } else { heroTypewriter.innerHTML = heroText; }
+                }
+                setTimeout(heroTypeWriter, 800);
+            }
+        });
+    </script>
+{% endblock %}
