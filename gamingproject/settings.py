@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-3y8oq+$ixbfbk)tjh2aptfvoc%nu9l1+4=l9e!ud*f-$#s1pz(
 DEBUG = True
 
 ALLOWED_HOSTS = ['gaming-website-kt4g.onrender.com']
+# ALLOWED_HOSTS = ['127.0.0.1']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
