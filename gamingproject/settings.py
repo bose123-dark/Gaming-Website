@@ -12,22 +12,27 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ✅ Pull SECRET_KEY from environment variable (never hardcode!)
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-local-dev-key-only')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+# ✅ Auto-detect if running on Render
+DEBUG = 'RENDER' not in os.environ
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3y8oq+$ixbfbk)tjh2aptfvoc%nu9l1+4=l9e!ud*f-$#s1pz('
+# ✅ Allow Render domain + localhost
+ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+if DEBUG:
+    ALLOWED_HOSTS.append('127.0.0.1')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['gaming-website-kt4g.onrender.com']
-# ALLOWED_HOSTS = ['127.0.0.1']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# WhiteNoise for static files (already in your MIDDLEWARE ✅)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Application definition
 
