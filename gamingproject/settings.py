@@ -35,7 +35,6 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,8 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gameapp'
+    'cloudinary_storage',  # ← add BEFORE gameapp
+    'cloudinary',          # ← add this too
+    'gameapp',
 ]
+
+# Add at the VERY BOTTOM of settings.py
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dydxuh9yr',
+    'API_KEY': '977685998975184',
+    'API_SECRET': 'paste_your_secret_here',  # ← reveal and paste
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
