@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=100, default="Game News")
-    image = models.ImageField(upload_to='posts/')
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=100, default="Admin")
