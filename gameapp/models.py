@@ -1,14 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
-# Create your models here.
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=100, default="Game News")
-    image_name = models.CharField(max_length=100, help_text="e.g. gta-6.jpg")
+    image = models.ImageField(upload_to='posts/')
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=100, default="Admin")
