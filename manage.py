@@ -2,7 +2,6 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import django
 
 
 def main():
@@ -21,8 +20,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
 
 # Setup Django environment
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gamingproject.settings')
