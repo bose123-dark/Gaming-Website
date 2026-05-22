@@ -130,7 +130,7 @@ p1 {
     background-position: center top;
     background-image:
         linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 100%),
-        url(images/batman.jpg);
+        url(../images/batman.jpg);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -345,16 +345,16 @@ p1 {
 }
 
 #four-image1 {
-    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(images/venom.jpg);
+    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(../images/venom.jpg);
 }
 #four-image2 {
-    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(images/gta5.jpg);
+    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(../images/gta5.jpg);
 }
 #four-image3 {
-    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(images/god-of-war-4.jpg);
+    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(../images/god-of-war-4.jpg);
 }
 #four-image4 {
-    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(images/uncharted.jpg);
+    background-image: linear-gradient(to top, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0) 100%), url(../images/uncharted.jpg);
 }
 
 .list-new, .list-new1, .list-new2, .list-new3 {
@@ -400,7 +400,7 @@ p1 {
    ============================================================ */
 .recent-main-border {
     width: 100%;
-    background-image: url(images/assassin-creed.jpg);
+    background-image: url(../images/assassin-creed.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #1a1a2e;
@@ -500,9 +500,9 @@ p1 {
     background-color: white;
 }
 
-.three-image  { background-image: url(images/it-takes-two.jpg); }
-.three-image1 { background-image: url(images/dead-by-daylight.jpg); }
-.three-image2 { background-image: url(images/rdr2.jpg); }
+.three-image  { background-image: url(../images/it-takes-two.jpg); }
+.three-image1 { background-image: url(../images/dead-by-daylight.jpg); }
+.three-image2 { background-image: url(../images/rdr2.jpg); }
 
 .three-adventure, .three-adventure1, .three-adventure2 {
     position: absolute;
@@ -607,8 +607,8 @@ p1 {
     background-size: cover;
 }
 
-.tournament-image-box  { background-image: url(images/bgmi.jpg); }
-.tournament-image-box2 { background-image: url(images/valorant.jpg); }
+.tournament-image-box  { background-image: url(../images/bgmi.jpg); }
+.tournament-image-box2 { background-image: url(../images/valorant.jpg); }
 
 .tournament-image-content {
     flex: 1;
@@ -648,7 +648,7 @@ p1 {
 .recent-reviews-main-border {
     width: 100%;
     min-height: 580px;
-    background-image: url(images/God-of-War.jpg);
+    background-image: url(../images/God-of-War.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -712,9 +712,9 @@ p1 {
     background-size: cover;
 }
 
-.reviews-card-bg  { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(images/venom.jpg); }
-.reviews-card-bg1 { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(images/infamous-second-son.jpg); }
-.reviews-card-bg2 { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(images/lostofus2.jpg); }
+.reviews-card-bg  { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(../images/venom.jpg); }
+.reviews-card-bg1 { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(../images/infamous-second-son.jpg); }
+.reviews-card-bg2 { background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url(../images/lostofus2.jpg); }
 
 .circle-review {
     width: 50px;

@@ -12,7 +12,7 @@
         <div class="contact-grid">
             <div class="portal-info">
                 <div class="status-badge"><div class="status-dot"></div> Direct Link: Active</div>
-                <h1 style="font-size: clamp(32px, 5vw, 64px); color: #fff; line-height: 1.1;">SECURITY<br><span style="color: orange;">PORTAL</span></h1>
+                <h1 style="font-size: clamp(32px, 5vw, 64px); color: #fff; line-height: 1.1;">SECURITY<br><span style="color: var(--primary-color);">PORTAL</span></h1>
                 <p id="typewriter-contact" style="color: #888; margin: 25px 0; font-size: 16px; line-height: 1.8;">If you've encountered a breach in your neural experience or have technical questions about "The Forge", our agents are standing by.</p>
                 <div class="faq-section">
                     <div class="faq-item">
@@ -26,11 +26,11 @@
                 <form id="contactForm">
                     <div class="input-group">
                         <label>Identity / Username</label>
-                        <input type="text" placeholder="{% if user.is_authenticated %}{{ user.username }}{% else %}Shadow_Hunter_42{% endif %}" required>
+                        <input type="text" name="identity" placeholder="{% if user.is_authenticated %}{{ user.username }}{% else %}Shadow_Hunter_42{% endif %}" required>
                     </div>
-                    <div class="input-group"><label>Communication Channel (Email)</label><input type="email" placeholder="access@darkgame.io" required></div>
-                    <div class="input-group"><label>Transmission Subject</label><input type="text" placeholder="Technical Interference" required></div>
-                    <div class="input-group"><label>Your Message</label><textarea rows="5" placeholder="Reporting a bug..." required></textarea></div>
+                    <div class="input-group"><label>Communication Channel (Email)</label><input type="email" name="email" placeholder="access@darkgame.io" required></div>
+                    <div class="input-group"><label>Transmission Subject</label><input type="text" name="subject" placeholder="Technical Interference" required></div>
+                    <div class="input-group"><label>Your Message</label><textarea name="message" rows="5" placeholder="Reporting a bug..." required></textarea></div>
                     <button type="submit" class="deploy-btn" id="submitBtn">Deploy Message</button>
                 </form>
             </div>

@@ -8,6 +8,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=100, default="Game News")
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
+    image_name = models.CharField(max_length=100, blank=True, default='', help_text='e.g. gta-6.jpg')
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=100, default="Admin")
