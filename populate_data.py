@@ -27,7 +27,7 @@ posts_data = [
     {
         "title": "PS5 Pro: Is the Mid-Gen Upgrade Worth Your Credits?",
         "category": "HARDWARE",
-        "image_name": "john wick.jpg",
+        "image_name": "god-of-war-4.jpg",
         "content": "We benchmark the latest hardware against the most demanding titles of the year. With enhanced ray tracing and AI upscaling, the Pro version promises 60FPS at 4K resolution, but at a premium price point. Is it the right choice for you?",
         "author": "Sony Tech"
     },
@@ -62,9 +62,13 @@ for data in posts_data:
             "author": data["author"]
         }
     )
-    if created:
-        print(f"Restored: {post.title}")
+    if not created and not post.image_name:
+        post.image_name = data["image_name"]
+        post.save()
+        print(f"Updated image_name: {post.title[:50]}")
+    elif created:
+        print(f"Restored: {post.title[:50]}")
     else:
-        print(f"Skipped (Already exists): {post.title}")
+        print(f"Skipped (Already exists): {post.title[:50]}")
 
 print("\n--- Restore Complete! Check your Blog page now. ---")
